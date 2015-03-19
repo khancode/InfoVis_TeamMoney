@@ -18,6 +18,7 @@
 
     <!-- css for this file -->
     <link href="css/index.css" rel="stylesheet">
+    <link href="css/treemap.css" rel="stylesheet">
 
     <!-- jQuery -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -44,11 +45,18 @@
 
     <!-- Jumbotron -->
     <div class="jumbotron">
-        <h1>Tree Map here!</h1>
+        <h2>Georgia Tech Colleges</h2>
         <!--<p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>-->
         <!--<p><a class="btn btn-lg btn-success" href="http://getbootstrap.com/examples/justified-nav/#" role="button">Get started today</a></p>-->
 
-        <svg id="treemap"></svg>
+        <!--<svg id="treemap"></svg>-->
+
+        <div id="treemap_container">
+            <form>
+                <label><input type="radio" name="mode" value="size" checked> Size</label>
+                <label><input type="radio" name="mode" value="count"> Count</label>
+            </form>
+        </div>
 
     </div>
 
@@ -65,7 +73,9 @@
 <!--<script src="./Justified Nav Template for Bootstrap_files/ie10-viewport-bug-workaround.js"></script>-->
 
 <!-- js for this file -->
-<script src="js/index.js"></script>
+<!--<script src="js/index.js"></script>-->
+
+<script src="js/treemap.js"></script>
 
 
 </body></html>
