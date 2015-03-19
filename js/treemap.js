@@ -76,7 +76,13 @@ d3.json("json/college_median_salary.json", function(error, root) {
             nodes[college] = backgroundColor;
         }
 
+        alert('data: ' + data);
+        data.push({name:college});
 
+        //rawr.colleges = data;
+        rawr.$apply(function() {
+            rawr.colleges = data;
+        })
     });
 });
 

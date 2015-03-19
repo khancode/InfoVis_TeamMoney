@@ -26,7 +26,11 @@
     <!-- D3 -->
     <script src="bower_components/d3/d3.min.js"></script>
 
-<body>
+    <!-- AngularJS -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="js/TreeMapController.js"></script>
+
+<body ng-app="TreeMap">
 
 <div class="container">
 
@@ -44,12 +48,16 @@
     </div>
 
     <!-- Jumbotron -->
-    <div class="jumbotron">
+    <div class="jumbotron" ng-controller="TestController">
         <h2>Median Salaries Of Colleges</h2>
         <!--<p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>-->
         <!--<p><a class="btn btn-lg btn-success" href="http://getbootstrap.com/examples/justified-nav/#" role="button">Get started today</a></p>-->
 
         <!--<svg id="treemap"></svg>-->
+
+        <div id="selected_colleges" style="float:left;">
+            <p ng-repeat="college in colleges"> {{college.name}} </p>
+        </div>
 
         <div id="treemap_container">
             <form>
