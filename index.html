@@ -18,13 +18,18 @@
 
     <!-- css for this file -->
     <link href="css/index.css" rel="stylesheet">
-    <link href="css/treemap.css" rel="stylesheet">
+    <link href="css/treemap_plus.css" rel="stylesheet">
 
     <!-- jQuery -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- D3 -->
     <script src="bower_components/d3/d3.min.js"></script>
+
+    <!-- D3 Plus -->
+    <!-- load D3plus after D3js -->
+    <!--<script src="http://www.d3plus.org/js/d3plus.js"></script>-->
+    <script src="libs/d3plus/d3plus.js"></script>
 
     <!-- AngularJS -->
     <script src="bower_components/angular/angular.js"></script>
@@ -53,17 +58,11 @@
         <!--<p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>-->
         <!--<p><a class="btn btn-lg btn-success" href="http://getbootstrap.com/examples/justified-nav/#" role="button">Get started today</a></p>-->
 
-        <!--<svg id="treemap"></svg>-->
+        <!-- create container element for treemap visualization -->
+        <div id="viz"></div>
 
-        <div id="selected_colleges" style="float:left;">
+        <div id="selected_colleges">
             <p ng-repeat="college in colleges"> {{college.name}} </p>
-        </div>
-
-        <div id="treemap_container">
-            <form>
-                <label><input type="radio" name="mode" value="size" checked> Size</label>
-                <label><input type="radio" name="mode" value="count"> Count</label>
-            </form>
         </div>
 
     </div>
@@ -81,9 +80,8 @@
 <!--<script src="./Justified Nav Template for Bootstrap_files/ie10-viewport-bug-workaround.js"></script>-->
 
 <!-- js for this file -->
-<!--<script src="js/state_example.js"></script>-->
+<script src="js/treemap_plus.js"></script>
 
-<script src="js/treemap.js"></script>
 <script src="js/index.js"></script>
 
 </body></html>
