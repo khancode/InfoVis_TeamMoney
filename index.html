@@ -18,6 +18,7 @@
 
     <!-- css for this file -->
     <link href="css/index.css" rel="stylesheet">
+    <link href="css/time_series.css" rel="stylesheet">
     <link href="css/treemap_plus.css" rel="stylesheet">
 
     <!-- jQuery -->
@@ -52,14 +53,24 @@
         </nav>
     </div>
 
-    <!-- Jumbotron -->
+    <!-- Jumbotron for Time Series -->
+    <div class="jumbotron">
+        <h2>Time Series</h2>
+
+        <div id="time_series_container">
+
+        </div>
+
+    </div>
+
+    <!-- Jumbotron for Tree map -->
     <div class="jumbotron" ng-controller="TestController">
         <h2>Median Salaries Of Colleges</h2>
         <!--<p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>-->
         <!--<p><a class="btn btn-lg btn-success" href="http://getbootstrap.com/examples/justified-nav/#" role="button">Get started today</a></p>-->
 
         <!-- create container element for treemap visualization -->
-        <div id="viz"></div>
+        <div id="treemap_plus_container"></div>
 
         <div id="selected_colleges">
             <p ng-repeat="college in colleges"> {{college.name}} </p>
@@ -80,6 +91,7 @@
 <!--<script src="./Justified Nav Template for Bootstrap_files/ie10-viewport-bug-workaround.js"></script>-->
 
 <!-- js for this file -->
+<script src="js/time_series.js"></script>
 <script src="js/treemap_plus.js"></script>
 
 <script src="js/index.js"></script>
