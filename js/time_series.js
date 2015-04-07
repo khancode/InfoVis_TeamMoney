@@ -2,14 +2,14 @@
  * Created by khancode on 4/6/2015.
  */
 
-$timeSeries = new TimeSeries();
-
-d3.json("json/sample_data.json", function(error, data){
-    //use data here
-    //JSON = data;
-    $timeSeries.draw(data);
-
-});
+//$timeSeries = new TimeSeries();
+//
+//d3.json("json/sample_data.json", function(error, data){
+//    //use data here
+//    //JSON = data;
+//    $timeSeries.draw(data);
+//
+//});
 
 function TimeSeries()
 {

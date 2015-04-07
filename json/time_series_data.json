@@ -290,146 +290,146 @@
   {
     "Level": "Bachelors",
     "College": "College of Architecture",
-    "Offer Rate": "61.50%",
-    "Placement Rate": "61.50%",
+    "Offer Rate": 61.50,
+    "Placement Rate": 61.50,
     "Number Reporting Salary": "4",
     "Population of Job-Seekers": "13",
     "Median Overall Salary": "$51,500.00 ",
     "Median Overall Bonus": "$1,500.00 ",
     "Number Reporting Bonus": "1",
-    "Date": "12/31/2012"
+    "Date": 2012
   },
   {
     "Level": "Bachelors",
     "College": "College of Computing",
-    "Offer Rate": "97.50%",
-    "Placement Rate": "87.80%",
+    "Offer Rate": 97.50,
+    "Placement Rate": 87.80,
     "Number Reporting Salary": "32",
     "Population of Job-Seekers": "41",
     "Median Overall Salary": "$71,250.00 ",
     "Median Overall Bonus": "$5,000.00 ",
     "Number Reporting Bonus": "20",
-    "Date": "12/31/2012"
+    "Date": 2012
   },
   {
     "Level": "Bachelors",
     "College": "College of Engineering",
-    "Offer Rate": "76.90%",
-    "Placement Rate": "63.20%",
+    "Offer Rate": 76.90,
+    "Placement Rate": 63.20,
     "Number Reporting Salary": "219",
     "Population of Job-Seekers": "413",
     "Median Overall Salary": "$65,000.00 ",
     "Median Overall Bonus": "$5,000.00 ",
     "Number Reporting Bonus": "121",
-    "Date": "12/31/2012"
+    "Date": 2012
   },
   {
     "Level": "Bachelors",
     "College": "Ivan Allen College",
-    "Offer Rate": "59.30%",
-    "Placement Rate": "43.80%",
+    "Offer Rate": 59.30,
+    "Placement Rate": 43.80,
     "Number Reporting Salary": "9",
     "Population of Job-Seekers": "32",
     "Median Overall Salary": "$45,000.00 ",
     "Median Overall Bonus": "$6,000.00 ",
     "Number Reporting Bonus": "4",
-    "Date": "12/31/2012"
+    "Date": 2012
   },
   {
     "Level": "Bachelors",
     "College": "Scheller College of Business",
-    "Offer Rate": "89.40%",
-    "Placement Rate": "69.50%",
+    "Offer Rate": 89.40,
+    "Placement Rate": 69.50,
     "Number Reporting Salary": "55",
     "Population of Job-Seekers": "105",
     "Median Overall Salary": "$52,000.00 ",
     "Median Overall Bonus": "$5,000.00 ",
     "Number Reporting Bonus": "25",
-    "Date": "12/31/2012"
+    "Date": 2012
   },
   {
     "Level": "Bachelors",
     "College": "College of Sciences",
-    "Offer Rate": "71.40%",
-    "Placement Rate": "58.60%",
+    "Offer Rate": 71.40,
+    "Placement Rate": 58.60,
     "Number Reporting Salary": "15",
     "Population of Job-Seekers": "29",
     "Median Overall Salary": "$37,000.00 ",
     "Median Overall Bonus": "$4,000.00 ",
     "Number Reporting Bonus": "2",
-    "Date": "12/31/2012"
+    "Date": 2012
   },
   {
     "Level": "Bachelors",
     "College": "College of Architecture",
-    "Offer Rate": "70.00%",
-    "Placement Rate": "56.40%",
+    "Offer Rate": 70.00,
+    "Placement Rate": 56.40,
     "Number Reporting Salary": "22",
     "Population of Job-Seekers": "55",
     "Median Overall Salary": "$50,000.00 ",
     "Median Overall Bonus": "$2,500.00 ",
     "Number Reporting Bonus": "4",
-    "Date": "6/3/2012"
+    "Date": 2012
   },
   {
     "Level": "Bachelors",
     "College": "College of Computing",
-    "Offer Rate": "89.50%",
-    "Placement Rate": "81.70%",
+    "Offer Rate": 89.50,
+    "Placement Rate": 81.70,
     "Number Reporting Salary": "43",
     "Population of Job-Seekers": "60",
     "Median Overall Salary": "$67,000.00 ",
     "Median Overall Bonus": "$8,750.00 ",
     "Number Reporting Bonus": "20",
-    "Date": "6/3/2012"
+    "Date": 2012
   },
   {
     "Level": "Bachelors",
     "College": "College of Engineering",
-    "Offer Rate": "76.50%",
-    "Placement Rate": "68.90%",
+    "Offer Rate": 76.50,
+    "Placement Rate": 68.90,
     "Number Reporting Salary": "282",
     "Population of Job-Seekers": "470",
     "Median Overall Salary": "$64,000.00 ",
     "Median Overall Bonus": "$5,000.00 ",
     "Number Reporting Bonus": "167",
-    "Date": "6/3/2012"
+    "Date": 2012
   },
   {
     "Level": "Bachelors",
     "College": "Ivan Allen College",
-    "Offer Rate": "68.00%",
-    "Placement Rate": "57.70%",
+    "Offer Rate": 68.00,
+    "Placement Rate": 57.70,
     "Number Reporting Salary": "17",
     "Population of Job-Seekers": "52",
     "Median Overall Salary": "$55,000.00 ",
     "Median Overall Bonus": "$4,500.00 ",
     "Number Reporting Bonus": "10",
-    "Date": "6/3/2012"
+    "Date": 2012
   },
   {
     "Level": "Bachelors",
     "College": "College of Management",
-    "Offer Rate": "84.00%",
-    "Placement Rate": "70.40%",
+    "Offer Rate": 84.00,
+    "Placement Rate": 70.40,
     "Number Reporting Salary": "58",
     "Population of Job-Seekers": "98",
     "Median Overall Salary": "$50,500.00 ",
     "Median Overall Bonus": "$5,000.00 ",
     "Number Reporting Bonus": "29",
-    "Date": "6/3/2012"
+    "Date": 2012
   },
   {
     "Level": "Bachelors",
     "College": "College of Sciences",
-    "Offer Rate": "64.30%",
-    "Placement Rate": "52.60%",
+    "Offer Rate": 64.30,
+    "Placement Rate": 52.60,
     "Number Reporting Salary": "12",
     "Population of Job-Seekers": "38",
     "Median Overall Salary": "$60,000.00 ",
     "Median Overall Bonus": "$3,000.00 ",
     "Number Reporting Bonus": "8",
-    "Date": "6/3/2012"
+    "Date": 2012
   },
   {
     "Level": "Bachelors",
