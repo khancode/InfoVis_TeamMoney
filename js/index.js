@@ -4,7 +4,11 @@
 
 console.log("inside index.js");
 
-var colleges;
+
+
+
+
+//var colleges;
 
 ///* Omar wrote this */
 //$.getScript("js/treemap_plus.js", function(){

@@ -1,8 +1,11 @@
 #time_series_container {
-    width: 1200px;
+    width: 1300px;
     height: 500px;
 }
 
+#time_series_container svg {
+    width: 1300px;
+}
 .axis path,
 .axis line,
 .axis1 path,
