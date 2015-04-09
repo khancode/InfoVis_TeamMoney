@@ -203,6 +203,14 @@ function TimeSeries() {
                 .attr("clip-path", "url(#clip)")//use clip path to make irrelevant part invisible
                 .style("stroke", function (d) {
                     return color(d.name);
+                })
+                .style("stroke-dasharray", function(d) {
+                    if (d.name == 'Employment Rate') {
+                        return "10, 10";
+                    } else {
+                        return null;
+                    }
+                    //console.log(d);
                 });
 
             // draw legend
