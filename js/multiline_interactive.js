@@ -277,8 +277,6 @@ function TimeSeries() {
                     return d.name;
                 });
 
-            // Omar
-            //alert($(".issue").select("text").val());
 
             // Hover line
             var hoverLineGroup = svg.append("g")
@@ -383,8 +381,8 @@ function TimeSeries() {
 
                 //alert('Start Year: ' + startYear + '\nEnd Year: ' + endYear);
 
-                console.log('startMonth: ' + startDate.getMonth());
-                console.log('endMonth: ' + endDate.getMonth());
+                //console.log('startMonth: ' + startDate.getMonth());
+                //console.log('endMonth: ' + endDate.getMonth());
 
                 if (startDate.getMonth() >= 6)
                     startYear += 1;
@@ -394,6 +392,8 @@ function TimeSeries() {
 
                 console.log('startYear: ' + startYear);
                 console.log('endYear: ' + endYear);
+
+                $tree_map.reDraw('Bachelors', startYear, endYear);
             }
 
             //for brusher of the slider bar at the bottom
