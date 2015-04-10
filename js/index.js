@@ -5,9 +5,6 @@
 console.log("inside index.js");
 
 
-
-
-
 //var colleges;
 
 ///* Omar wrote this */

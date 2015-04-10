@@ -248,6 +248,11 @@ function TimeSeries() {
                         .attr("fill", function (d) {
                             return d.visible ? color(d.name) : "#F1F1F2";
                         });
+
+                    var yo = $(this).next();
+                    console.log($(this).next().text());//.click(function() {
+                        //console.log('dude');
+                    //});
                 })
 
                 .on("mouseover", function (d) {
