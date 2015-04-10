@@ -39,10 +39,9 @@
 
 <body ng-app="TreeMap">
 
-<div class="container">
-
-    <!-- The justified navigation menu is meant for single line per list item.
-         Multiple lines will require custom code not provided by Bootstrap. -->
+<!-- The justified navigation menu is meant for single line per list item.
+     Multiple lines will require custom code not provided by Bootstrap. -->
+<div id="header_container">
     <div class="masthead">
         <h3 class="text-muted">Georgia Tech Degree Salaries Breakdown</h3>
         <nav>
@@ -53,29 +52,35 @@
             </ul>
         </nav>
     </div>
+</div>
 
+<div id="body_container">
     <!-- Jumbotron for Time Series -->
-    <div class="jumbotron">
-        <h2>Employment Rates</h2>
+    <!--<div id="viz_container" class="jumbotron">-->
 
-        <div class="radio">
-            <label>
-                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                BS (Bachelor of Science) Degree
-            </label>
-        </div>
-        <div class="radio">
-            <label>
-                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                MS (Master of Science) Degree
-            </label>
-        </div>
 
         <div id="time_series_container">
+            <h2>Employment Rates</h2>
+
+            <div class="radio">
+                <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                    BS (Bachelor of Science) Degree
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                    MS (Master of Science) Degree
+                </label>
+            </div>
 
         </div>
 
-    </div>
+        <!-- create container element for treemap visualization -->
+        <div id="treemap_plus_container"></div>
+
+    <!--</div>-->
 
     <!-- Jumbotron for Tree map -->
     <div class="jumbotron" ng-controller="TestController">
@@ -83,8 +88,8 @@
         <!--<p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>-->
         <!--<p><a class="btn btn-lg btn-success" href="http://getbootstrap.com/examples/justified-nav/#" role="button">Get started today</a></p>-->
 
-        <!-- create container element for treemap visualization -->
-        <div id="treemap_plus_container"></div>
+        <!--&lt;!&ndash; create container element for treemap visualization &ndash;&gt;-->
+        <!--<div id="treemap_plus_container"></div>-->
 
         <div id="selected_colleges">
             <p ng-repeat="college in colleges"> {{college.name}} </p>
@@ -92,14 +97,12 @@
 
     </div>
 
+</div> <!-- body container -->
 
-    <!-- Site footer -->
-    <footer class="footer">
-        <p>© CS 4460 Team $$$</p>
-    </footer>
-
-</div> <!-- /container -->
-
+<!-- Site footer -->
+<footer class="footer">
+    <p>© CS 4460 Team $$$</p>
+</footer>
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <!--<script src="./Justified Nav Template for Bootstrap_files/ie10-viewport-bug-workaround.js"></script>-->

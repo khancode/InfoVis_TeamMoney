@@ -14,7 +14,7 @@ function TimeSeries() {
 
         var margin = {top: 20, right: 200, bottom: 100, left: 50},
             margin2 = {top: 430, right: 10, bottom: 20, left: 40},
-            width = 1200 - margin.left - margin.right,
+            width = 1000 - margin.left - margin.right,
             height = 500 - margin.top - margin.bottom,
             height2 = 500 - margin2.top - margin2.bottom;
 

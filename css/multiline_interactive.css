@@ -1,11 +1,16 @@
 #time_series_container {
-    width: 1300px;
-    height: 500px;
+    width: 1100px;
+    height: 600px;
+    margin: 0 auto;
+    display: inline-block;
 }
 
 #time_series_container svg {
-    width: 1300px;
+    width: 1100px;
+    /*display: block;*/
+    /*margin: 0 auto;*/
 }
+
 .axis path,
 .axis line,
 .axis1 path,
