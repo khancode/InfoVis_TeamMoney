@@ -20,7 +20,7 @@
 
     <!-- css for this file -->
     <link href="css/index.css" rel="stylesheet">
-    <link href="css/multiline_interactive.css" rel="stylesheet">
+    <link href="css/time_series.css" rel="stylesheet">
     <link href="css/treemap_plus.css" rel="stylesheet">
 
     <!-- jQuery -->
@@ -42,10 +42,10 @@
     <!-- Custom Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="libs/css/font-awesome.min.css" type="text/css">
 
     <!-- Plugin CSS -->
-    <link rel="stylesheet" href="css/animate.min.css" type="text/css">
+    <link rel="stylesheet" href="libs/css/animate.min.css" type="text/css">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/creative.css" type="text/css">
@@ -67,20 +67,20 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand page-scroll" href="http://ironsummitmedia.github.io/startbootstrap-creative/#page-top">Start Bootstrap</a>
+            <a class="navbar-brand page-scroll" href="http://ironsummitmedia.github.io/startbootstrap-creative/#page-top">Georgia Tech Salaries</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li class="">
-                    <a class="page-scroll" href="http://ironsummitmedia.github.io/startbootstrap-creative/#about">About</a>
+                    <a class="page-scroll" href="#about">About</a>
                 </li>
                 <li class="">
-                    <a class="page-scroll" href="http://ironsummitmedia.github.io/startbootstrap-creative/#services">Services</a>
+                    <a class="page-scroll" href="#tuition">Tuition</a>
                 </li>
                 <li class="">
-                    <a class="page-scroll" href="http://ironsummitmedia.github.io/startbootstrap-creative/#portfolio">Portfolio</a>
+                    <a class="page-scroll" href="#employment_container">Employment</a>
                 </li>
                 <li class="">
                     <a class="page-scroll" href="http://ironsummitmedia.github.io/startbootstrap-creative/#contact">Contact</a>
@@ -92,27 +92,56 @@
     <!-- /.container-fluid -->
 </nav>
 
-<div id="header_container">
-    <div class="masthead">
-        <h3 class="text-muted">Georgia Tech Degree Salaries Breakdown</h3>
-        <nav>
-            <ul class="nav nav-justified">
-                <li class="active"><a href="http://getbootstrap.com/examples/justified-nav/#">Home</a></li>
-                <li><a href="http://getbootstrap.com/examples/justified-nav/#">About</a></li>
-                <li><a href="http://getbootstrap.com/examples/justified-nav/#">Contact</a></li>
-            </ul>
-        </nav>
+<header>
+    <div class="header-content">
+        <div class="header-content-inner">
+            <h1 style="font-size: 65px;">Your Favorite Source of Free Bootstrap Themes</h1>
+            <hr>
+            <p>Start Bootstrap can help you build better websites using the Bootstrap CSS framework! Just download your template and start going, no strings attached!</p>
+            <a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
+        </div>
     </div>
-</div>
+</header>
 
-<div id="body_container">
+<section class="bg-primary" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">We've got what you need!</h2>
+                <hr class="light">
+                <p class="text-faded">Start Bootstrap has everything you need to get your new website up and running in no time! All of the templates and themes on Start Bootstrap are open source, free to download, and easy to use. No strings attached!</p>
+                <a href="#tuition" class="btn btn-default btn-xl page-scroll">Tuition!</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-primary" id="tuition">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">We've got what you need!</h2>
+                <hr class="light">
+                <p class="text-faded">Start Bootstrap has everything you need to get your new website up and running in no time! All of the templates and themes on Start Bootstrap are open source, free to download, and easy to use. No strings attached!</p>
+                <a href="#employment_container" class="btn btn-default btn-xl page-scroll">Get Started!</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- -------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+<div id="employment_container" class="jumbotron">
     <!-- Jumbotron for Time Series -->
     <!--<div id="viz_container" class="jumbotron">-->
 
+        <h2 class="section-heading">Employment Rates</h2>
+        <hr class="dark">
 
         <div id="time_series_container">
-            <h2>Employment Rates</h2>
-
             <div class="radio">
                 <label>
                     <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
@@ -125,11 +154,12 @@
                     MS (Master of Science) Degree
                 </label>
             </div>
-
         </div>
 
         <!-- create container element for treemap visualization -->
-        <div id="treemap_plus_container"></div>
+        <div id="treemap_plus_container">
+            <a href="#body_container" class="btn btn-primary btn-xl page-scroll">Get Started!</a>
+        </div>
 
     <!--</div>-->
 
@@ -159,12 +189,15 @@
 <!--<script src="./Justified Nav Template for Bootstrap_files/ie10-viewport-bug-workaround.js"></script>-->
 
 <!-- js for this file -->
-<script src="js/multiline_interactive.js"></script>
+<script src="js/time_series.js"></script>
 <script src="js/treemap_plus.js"></script>
 
 <script src="js/index.js"></script>
 
 <!-- creative -->
+<!-- jQuery -->
+<script src="libs/js/jquery.js"></script>
+
 <!-- Plugin JavaScript -->
 <script src="libs/js/jquery.easing.min.js"></script>
 <script src="libs/js/jquery.fittext.js"></script>
