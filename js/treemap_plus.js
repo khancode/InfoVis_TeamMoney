@@ -9,7 +9,7 @@ $tree_map.draw();//'Bachelors', 2006, 2014);
 function TreeMap()
 {
     _this = this; // store instance reference to use inside d3.json()
-    this.level = 'Bachelors';
+    this.degreeLevel = 'Bachelors';
     this.startYear = 2006;
     this.endYear = 2014;
 
@@ -36,7 +36,7 @@ function TreeMap()
 
                 if (date.year >= _this.startYear && date.year <= _this.endYear) {
 
-                    if (curLevel == _this.level)
+                    if (curLevel == _this.degreeLevel)
                     {
                         //console.log('good');
                         //console.log('level: ' + level);
@@ -97,11 +97,15 @@ function TreeMap()
         this.draw();
     };
 
-    this.setParams = function(level, startYear, endYear) {
-        this.level = level;
+    this.setParams = function(degreeLevel, startYear, endYear) {
+        this.degreeLevel = degreeLevel;
         this.startYear = startYear;
         this.endYear = endYear;
     };
+
+    this.setDegreeLevel = function(degreeLevel) {
+        this.degreeLevel = degreeLevel;
+    }
 
 
     function parseDate(num)

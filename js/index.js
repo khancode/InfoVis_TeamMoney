@@ -5,6 +5,19 @@
 console.log("inside index.js");
 
 
+/* Radio buttons */
+$('.degree_radio_group').on('change', function() {
+
+    //console.log($(this).val());
+    var degreeLevel = $(this).val();
+    $time_series.setDegreeLevel(degreeLevel);
+    $time_series.reDraw();
+
+    $tree_map.setDegreeLevel(degreeLevel);
+    $tree_map.reDraw();
+    $('#treemap_years_text').text('Years 2006 - 2014');
+});
+
 //var colleges;
 
 ///* Omar wrote this */

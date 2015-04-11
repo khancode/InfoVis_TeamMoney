@@ -4,13 +4,15 @@
 
 $time_series = new TimeSeries();
 
-$time_series.draw("bs");
+$time_series.draw();
 
 
 
 function TimeSeries() {
 
-    this.draw = function(level) {
+    this.degreeLevel = 'Bachelors';
+
+    this.draw = function() {
 
         var margin = {top: 20, right: 200, bottom: 100, left: 50},
             margin2 = {top: 430, right: 10, bottom: 20, left: 40},
@@ -93,12 +95,13 @@ function TimeSeries() {
 
         //end slider part-----------------------------------------------------------------------------------
 
-        if (level == 'bs')
+        if (this.degreeLevel == 'Bachelors')
             var filename = 'json/bs_employment_rates.tsv';
-        else if (level == 'ms')
+        else if (this.degreeLevel == 'Masters')
             var filename = 'json/ms_employment_rates.tsv';
         else
-            var filename = ''; // shouldn't hapen
+            var filename = ''; // shouldn't happen
+
 
         d3.tsv(filename, function (error, data) {
             color.domain(d3.keys(data[0]).filter(function (key) { // Set the domain of the color ordinal scale to be all the csv headers except "date", matching a color to an issue
@@ -450,4 +453,13 @@ function TimeSeries() {
         }
     };
 
+    this.reDraw = function() {
+
+        d3.select('#time_series_container').select('svg').remove();
+        this.draw();
+    };
+
+    this.setDegreeLevel = function(degreeLevel) {
+        this.degreeLevel = degreeLevel;
+    }
 }
