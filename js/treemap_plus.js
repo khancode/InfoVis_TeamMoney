@@ -3,14 +3,19 @@
  */
 
 $tree_map = new TreeMap();
-// Default tree map
-$tree_map.draw('Bachelors', 2014, 2014);
+// Default tree map 2006 - 2014
+$tree_map.draw();//'Bachelors', 2006, 2014);
 
 function TreeMap()
 {
-    this.draw = function(level, startYear, endYear)
+    _this = this; // store instance reference to use inside d3.json()
+    this.level = 'Bachelors';
+    this.startYear = 2006;
+    this.endYear = 2014;
+
+    this.draw = function() //level, startYear, endYear)
     {
-        _this = this;
+        $('#treemap_years_text').text('Years ' + this.startYear + ' - ' + this.endYear);
 
         var filename = 'json/all_data.json';
 
@@ -21,14 +26,17 @@ function TreeMap()
 
             for (var i in data)
             {
+                var college = data[i]['College'];
+                if ($employment_filter.isExcluded(college))
+                    continue;
+
                 var date = parseDate(data[i]['Date']);
                 var curLevel = data[i]['Level'];
-                var college = data[i]['College'];
                 var medianSalary = data[i]['Median Overall Salary'];
 
-                if (date.year >= startYear && date.year <= endYear) {
+                if (date.year >= _this.startYear && date.year <= _this.endYear) {
 
-                    if (curLevel == level)
+                    if (curLevel == _this.level)
                     {
                         //console.log('good');
                         //console.log('level: ' + level);
@@ -84,10 +92,17 @@ function TreeMap()
 
     };
 
-    this.reDraw = function(level, startYear, endYear) {
+    this.reDraw = function() { //level, startYear, endYear) {
         d3.select('#treemap_plus_container').select('svg').remove();
-        this.draw(level, startYear, endYear);
+        this.draw();
     };
+
+    this.setParams = function(level, startYear, endYear) {
+        this.level = level;
+        this.startYear = startYear;
+        this.endYear = endYear;
+    };
+
 
     function parseDate(num)
     {

@@ -205,7 +205,7 @@ function TimeSeries() {
                     return color(d.name);
                 })
                 .style("stroke-dasharray", function(d) {
-                    if (d.name == 'Employment Rate') {
+                    if (d.name == 'United States') {
                         return "10, 10";
                     } else {
                         return null;
@@ -249,10 +249,12 @@ function TimeSeries() {
                             return d.visible ? color(d.name) : "#F1F1F2";
                         });
 
-                    var yo = $(this).next();
-                    console.log($(this).next().text());//.click(function() {
-                        //console.log('dude');
-                    //});
+                    //var yo = $(this).next();
+                    var college = $(this).next().text();
+                    console.log(college);
+
+                    $employment_filter.filter(college);
+                    $tree_map.reDraw();
                 })
 
                 .on("mouseover", function (d) {
@@ -406,7 +408,8 @@ function TimeSeries() {
                 console.log('startYear: ' + startYear);
                 console.log('endYear: ' + endYear);
 
-                $tree_map.reDraw('Bachelors', startYear, endYear);
+                $tree_map.setParams('Bachelors', startYear, endYear);
+                $tree_map.reDraw();
             }
 
             //for brusher of the slider bar at the bottom
