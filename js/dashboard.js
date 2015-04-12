@@ -17,7 +17,6 @@ function OverallSalaryDashboard() {
             // hashmap: key (college) => value (medianSalary)
             var hashMap = {};
 
-            console.log(data);
             for (var i in data) {
                 var curLevel = data[i]['Level'];
                 var college = data[i]['College'];
@@ -36,19 +35,13 @@ function OverallSalaryDashboard() {
                 }
             }
 
-            console.log('hashMap:');
-            console.log(hashMap);
-
             var arr_data = [];
             for (var college in hashMap) {
                 var salaryAvg = parseInt(average(hashMap[college][0]));
                 var bonusAvg = parseInt(average(hashMap[college][1]));
 
-                console.log('salaryAvg: ' + salaryAvg);
-                console.log('bonusAvg: ' + bonusAvg);
-
-                //console.log('college: ' + college);
-                //console.log('avg: ' + avg);
+                //console.log('salaryAvg: ' + salaryAvg);
+                //console.log('bonusAvg: ' + bonusAvg);
 
                 arr_data.push({
                     college: college,
@@ -70,10 +63,24 @@ function OverallSalaryDashboard() {
             //];
 
             dashboard('#dashboard_container', arr_data);//freqData);
+
+            //var dude = $("#dashboard_container > svg g:nth-child(1) g:nth-child(3) text").text();
+            //$("#dashboard_container > svg > g g:nth-child(3) rect").attr("fill", "#EACE3F");
+
+            //console.log(dude);
         });
 
         function dashboard(id, fData) {
             var barColor = 'steelblue';
+            var collegeColors = {'College of Architecture':'#B22200',
+                'College of Computing':'#EACE3F',
+                'College of Engineering':'#282F6B',
+                'Ivan Allen College':'#B35C1E',
+                'Scheller College of Business':'#224F20',
+                'College of Sciences':'#5F487C'
+            };
+            var pieChartColor = ["#41ab5d", "#e08214"]; // CAUTION: these colors are also hardcoded somewhere else in this file!!!
+
 
             function segColor(c) {
                 return {"Median Overall Salary": "#41ab5d", "Median Overall Bonus": "#e08214"}[c];
@@ -129,7 +136,12 @@ function OverallSalaryDashboard() {
                     .attr("height", function (d) {
                         return hGDim.h - y(d[1]);
                     })
-                    .attr('fill', barColor)
+                    .attr('fill', function(d) { //barColor)
+                        if (d[0] in collegeColors)
+                            return collegeColors[d[0]];
+                        else
+                            return 'black'; // this should not happen
+                    })
                     .on("mouseover", mouseover)// mouseover is defined below.
                     .on("mouseout", mouseout);// mouseout is defined below.
 
@@ -183,7 +195,16 @@ function OverallSalaryDashboard() {
                         .attr("height", function (d) {
                             return hGDim.h - y(d[1]);
                         })
-                        .attr("fill", color);
+                        .attr("fill", function(d) {
+                            // Omar
+                            if (pieChartColor.indexOf(color) > -1 == true)
+                                return color;
+
+                            if (d[0] in collegeColors)
+                                return collegeColors[d[0]];
+                            else
+                                color;
+                        });
 
                     // transition the frequency labels location and change value.
                     bars.select("text").transition().duration(500)
@@ -193,7 +214,7 @@ function OverallSalaryDashboard() {
                         .attr("y", function (d) {
                             return y(d[1]) - 5;
                         });
-                }
+                };
                 return hG;
             }
 
@@ -307,7 +328,7 @@ function OverallSalaryDashboard() {
                     l.select(".legendPerc").text(function (d) {
                         return getLegend(d, nD);
                     });
-                }
+                };
 
                 function getLegend(d, aD) { // Utility function to compute percentage.
                     return d3.format("%")(d.money / d3.sum(aD.map(function (v) {

@@ -105,7 +105,7 @@ function TreeMap()
 
     this.setDegreeLevel = function(degreeLevel) {
         this.degreeLevel = degreeLevel;
-    }
+    };
 
 
     function parseDate(num)

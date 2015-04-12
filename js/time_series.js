@@ -119,7 +119,7 @@ function TimeSeries() {
                     values: data.map(function (d) { // "values": which has an array of the dates and ratings
                         return {
                             date: d.date,
-                            rating: +(d[name]),
+                            rating: +(d[name])
                         };
                     }),
                     visible: true //(name === "College of Sciences" ? true : false) // "visible": all false except for economy which is true.
@@ -284,7 +284,7 @@ function TimeSeries() {
                     d3.select("#line-" + d.name.replace(" ", "").replace("/", ""))
                         .transition()
                         .style("stroke-width", 1.5);
-                })
+                });
 
             issue.append("text")
                 .attr("x", width + (margin.right / 3))
@@ -378,7 +378,7 @@ function TimeSeries() {
 
                     return (d[columnName]);
                 });
-            };
+            }
 
             function brushstart() {
 
@@ -437,7 +437,7 @@ function TimeSeries() {
                         return d.visible ? line(d.values) : null; // If d.visible is true then draw line for this d selection
                     });
 
-            };
+            }
 
         }); // End Data callback function
 
