@@ -27,16 +27,17 @@ function TreeMap() {
 
                 var date = parseDate(data[i]['Date']);
                 var degreeLevel = data[i]['Level'];
-                var medianSalary = data[i]['Median Overall Salary'];
+                //var medianSalary = data[i]['Median Overall Salary'];
+                var employmentRate = data[i]['Placement Rate'];
 
                 if (date.year >= $employment_filter.getStartYear() && date.year <= $employment_filter.getEndYear())
                 {
                     if (degreeLevel == $employment_filter.getDegreeLevel())
                     {
                         if (college in hashMap == false)
-                            hashMap[college] = [medianSalary];
+                            hashMap[college] = [employmentRate]; //[medianSalary];
                         else
-                            hashMap[college].push(medianSalary);
+                            hashMap[college].push(employmentRate); //medianSalary);
                     }
                 }
             }
@@ -46,7 +47,8 @@ function TreeMap() {
             {
                 var avg = average(hashMap[college]);
 
-                arr_data.push({"college":college, "medianSalary":avg});
+                //arr_data.push({"college":college, "medianSalary":avg});
+                arr_data.push({"college":college, "Employment Rate":avg});
             }
 
             //// sample data array
@@ -66,7 +68,7 @@ function TreeMap() {
                 .data(arr_data) //sample_data)  // data to use with the visualization
                 .type("tree_map")   // visualization type
                 .id("college") //"name")         // key for which our data is unique on
-                .size("medianSalary") //"value")      // sizing of blocks
+                .size("Employment Rate") //"medianSalary") //"value")      // sizing of blocks
                 .draw();             // finally, draw the visualization!
 
         });
