@@ -4,18 +4,13 @@
 
 $tree_map = new TreeMap();
 // Default tree map 2006 - 2014
-$tree_map.draw();//'Bachelors', 2006, 2014);
+$tree_map.draw();
 
-function TreeMap()
-{
-    _this = this; // store instance reference to use inside d3.json()
-    this.degreeLevel = 'Bachelors';
-    this.startYear = 2006;
-    this.endYear = 2014;
+function TreeMap() {
 
-    this.draw = function() //level, startYear, endYear)
-    {
-        $('#treemap_years_text').text('Years ' + this.startYear + ' - ' + this.endYear);
+    this.draw = function() {
+
+        $('#treemap_years_text').text('Years ' + $employment_filter.getStartYear() + ' - ' + $employment_filter.getEndYear());
 
         var filename = 'json/all_data.json';
 
@@ -31,42 +26,28 @@ function TreeMap()
                     continue;
 
                 var date = parseDate(data[i]['Date']);
-                var curLevel = data[i]['Level'];
+                var degreeLevel = data[i]['Level'];
                 var medianSalary = data[i]['Median Overall Salary'];
 
-                if (date.year >= _this.startYear && date.year <= _this.endYear) {
-
-                    if (curLevel == _this.degreeLevel)
+                if (date.year >= $employment_filter.getStartYear() && date.year <= $employment_filter.getEndYear())
+                {
+                    if (degreeLevel == $employment_filter.getDegreeLevel())
                     {
-                        //console.log('good');
-                        //console.log('level: ' + level);
-                        //console.log('year: ' + date.year);
-
                         if (college in hashMap == false)
                             hashMap[college] = [medianSalary];
                         else
                             hashMap[college].push(medianSalary);
-
-                        //console.log('date: ' + date.toString());
-                        //console.log('college: ' + college);
-                        //console.log('medianSalary: ' + medianSalary);
                     }
                 }
             }
-
-            //console.log('hashMap: ' + hashMap);
 
             var arr_data = [];
             for (var college in hashMap)
             {
                 var avg = average(hashMap[college]);
-                //console.log('college: ' + college);
-                //console.log('avg: ' + avg);
 
                 arr_data.push({"college":college, "medianSalary":avg});
             }
-
-            //console.log(arr_data);
 
             //// sample data array
             //var sample_data = [
@@ -96,17 +77,6 @@ function TreeMap()
         d3.select('#treemap_plus_container').select('svg').remove();
         this.draw();
     };
-
-    this.setParams = function(degreeLevel, startYear, endYear) {
-        this.degreeLevel = degreeLevel;
-        this.startYear = startYear;
-        this.endYear = endYear;
-    };
-
-    this.setDegreeLevel = function(degreeLevel) {
-        this.degreeLevel = degreeLevel;
-    };
-
 
     function parseDate(num)
     {

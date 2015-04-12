@@ -4,19 +4,20 @@
 
 console.log("inside index.js");
 
-
 /* Radio buttons */
 $('.degree_radio_group').on('change', function() {
 
-    //console.log($(this).val());
     var degreeLevel = $(this).val();
-    $time_series.setDegreeLevel(degreeLevel);
-    $time_series.reDraw();
+    //Omar
+    $employment_filter.setDegreeLevel(degreeLevel);
 
-    $tree_map.setDegreeLevel(degreeLevel);
+    $time_series.reDraw();
     $tree_map.reDraw();
+    $overall_salary_dashboard.reDraw();
+
+    // TODO the years and filter shouldn't be reset, need to fix this update.
     $('#treemap_years_text').text('Years 2006 - 2014');
-    $employment_filter.clear();
+    $employment_filter.clear(degreeLevel);
 });
 
 //var colleges;

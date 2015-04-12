@@ -7,10 +7,7 @@ $time_series = new TimeSeries();
 $time_series.draw();
 
 
-
 function TimeSeries() {
-
-    this.degreeLevel = 'Bachelors';
 
     this.draw = function() {
 
@@ -95,9 +92,9 @@ function TimeSeries() {
 
         //end slider part-----------------------------------------------------------------------------------
 
-        if (this.degreeLevel == 'Bachelors')
+        if ($employment_filter.getDegreeLevel() == 'Bachelors')
             var filename = 'json/bs_employment_rates.tsv';
-        else if (this.degreeLevel == 'Masters')
+        else if ($employment_filter.getDegreeLevel() == 'Masters')
             var filename = 'json/ms_employment_rates.tsv';
         else
             var filename = ''; // shouldn't happen
@@ -244,7 +241,7 @@ function TimeSeries() {
                         .transition()
                         .attr("d", function (d) {
                             return d.visible ? line(d.values) : null; // If d.visible is true then draw line for this d selection
-                        })
+                        });
 
                     issue.select("rect")
                         .transition()
@@ -256,8 +253,9 @@ function TimeSeries() {
                     var college = $(this).next().text();
                     console.log(college);
 
-                    $employment_filter.filter(college);
+                    $employment_filter.filterCollege(college);
                     $tree_map.reDraw();
+                    $overall_salary_dashboard.reDraw();
                 })
 
                 .on("mouseover", function (d) {
@@ -411,8 +409,10 @@ function TimeSeries() {
                 console.log('startYear: ' + startYear);
                 console.log('endYear: ' + endYear);
 
-                $tree_map.setParams('Bachelors', startYear, endYear);
+                // Omar
+                $employment_filter.setStartEndYear(startYear, endYear);
                 $tree_map.reDraw();
+                $overall_salary_dashboard.reDraw();
             }
 
             //for brusher of the slider bar at the bottom
@@ -459,7 +459,4 @@ function TimeSeries() {
         this.draw();
     };
 
-    this.setDegreeLevel = function(degreeLevel) {
-        this.degreeLevel = degreeLevel;
-    }
 }

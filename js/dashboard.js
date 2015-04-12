@@ -18,20 +18,28 @@ function OverallSalaryDashboard() {
             var hashMap = {};
 
             for (var i in data) {
-                var curLevel = data[i]['Level'];
+
                 var college = data[i]['College'];
+                if ($employment_filter.isExcluded(college))
+                    continue;
+
+                var date = parseDate(data[i]['Date']);
+                var degreeLevel = data[i]['Level'];
                 var medianOverallSalary = data[i]['Median Overall Salary'];
                 var medianOverallBonus = data[i]['Median Overall Bonus'];
 
-                if (curLevel != 'Bachelors')
-                    continue;
-
-                if (college in hashMap == false) {
-                    hashMap[college] = [[medianOverallSalary], [medianOverallBonus]];
-                }
-                else {
-                    hashMap[college][0].push(medianOverallSalary);
-                    hashMap[college][1].push(medianOverallBonus);
+                if (date.year >= $employment_filter.getStartYear() && date.year <= $employment_filter.getEndYear())
+                {
+                    if (degreeLevel == $employment_filter.getDegreeLevel())
+                    {
+                        if (college in hashMap == false) {
+                            hashMap[college] = [[medianOverallSalary], [medianOverallBonus]];
+                        }
+                        else {
+                            hashMap[college][0].push(medianOverallSalary);
+                            hashMap[college][1].push(medianOverallBonus);
+                        }
+                    }
                 }
             }
 
@@ -357,6 +365,13 @@ function OverallSalaryDashboard() {
                 pC = pieChart(tF), // create the pie-chart.
                 leg = legend(tF);  // create the legend.
         }
+    };
+
+    this.reDraw = function() {
+        d3.select('#dashboard_container').select('svg').remove();
+        d3.select('#dashboard_container').select('svg').remove();
+        d3.select('#dashboard_container').select('table').remove();
+        this.draw();
     };
 
     function parseDate(num) {

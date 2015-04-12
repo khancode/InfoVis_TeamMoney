@@ -12350,12 +12350,12 @@ b"+i+"*=d\
         },
         lowercase: ["a", "and", "at", "but", "in", "of", "or", "the", "to", "with"],
         message: {
-            data: "analyzing data",
-            draw: "drawing visualization",
-            initializing: "initializing {0}",
-            loading: "loading data",
-            tooltipReset: "resetting tooltips",
-            ui: "updating ui"
+            data: "", // "analyzing data",
+            draw: "", // "drawing visualization",
+            initializing: "", // "initializing {0}",
+            loading: "", // "loading data",
+            tooltipReset: "", // "resetting tooltips",
+            ui: "" // "updating ui"
         },
         method: {
             active: "active segments",
