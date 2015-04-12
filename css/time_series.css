@@ -11,34 +11,34 @@
     /*margin: 0 auto;*/
 }
 
-.axis path,
-.axis line,
-.axis1 path,
-.axis1 line {
+#time_series_container .axis path,
+#time_series_container .axis line,
+#time_series_container .axis1 path,
+#time_series_container .axis1 line {
     fill: none;
     stroke: #E6E7E8;
     shape-rendering: crispEdges;
 }
 
-.x.axis path, .x.axis1 path {
+#time_series_container .x.axis path, .x.axis1 path {
     display: none;
 }
 
-.line {
+#time_series_container .line {
     fill: none;
     stroke-width: 1.5px;
 }
 
-.legend-box {
+#time_series_container .legend-box {
     cursor: pointer;
 }
 
-#mouse-tracker {
+#time_series_container #mouse-tracker {
     stroke: #E6E7E8;
     stroke-width: 1px;
 }
 
-.hover-line {
+#time_series_container .hover-line {
     stroke: #E6E7E8;
     fill: none;
     stroke-width: 1px;
@@ -47,18 +47,18 @@
     opacity: 1e-6;
 }
 
-.hover-text {
+#time_series_container .hover-text {
     stroke: none;
     font-size: 30px;
     font-weight: bold;
     fill: #000000;
 }
 
-.tooltip {
+#time_series_container .tooltip {
     font-weight: normal;
 }
 
-.brush .extent {
+#time_series_container .brush .extent {
     stroke: #FFF;
     shape-rendering: crispEdges;
 }

@@ -16,6 +16,7 @@ $('.degree_radio_group').on('change', function() {
     $tree_map.setDegreeLevel(degreeLevel);
     $tree_map.reDraw();
     $('#treemap_years_text').text('Years 2006 - 2014');
+    $employment_filter.clear();
 });
 
 //var colleges;

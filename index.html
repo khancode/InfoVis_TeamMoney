@@ -22,6 +22,7 @@
     <link href="css/index.css" rel="stylesheet">
     <link href="css/time_series.css" rel="stylesheet">
     <link href="css/treemap_plus.css" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">
 
     <!-- jQuery -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -83,7 +84,7 @@
                     <a class="page-scroll" href="#employment_container">Employment</a>
                 </li>
                 <li class="">
-                    <a class="page-scroll" href="http://ironsummitmedia.github.io/startbootstrap-creative/#contact">Contact</a>
+                    <a class="page-scroll" href="#salary_container">Salary</a>
                 </li>
             </ul>
         </div>
@@ -166,22 +167,31 @@
 
     <!--</div>-->
 
-    <!-- Jumbotron for Tree map -->
-    <div class="jumbotron" ng-controller="TestController">
-        <h2>Median Salaries Of Colleges</h2>
-        <!--<p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>-->
-        <!--<p><a class="btn btn-lg btn-success" href="http://getbootstrap.com/examples/justified-nav/#" role="button">Get started today</a></p>-->
+    <!--&lt;!&ndash; Jumbotron for Tree map &ndash;&gt;-->
+    <!--<div class="jumbotron" ng-controller="TestController">-->
+        <!--<h2>Median Salaries Of Colleges</h2>-->
+        <!--&lt;!&ndash;<p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p><a class="btn btn-lg btn-success" href="http://getbootstrap.com/examples/justified-nav/#" role="button">Get started today</a></p>&ndash;&gt;-->
 
-        <!--&lt;!&ndash; create container element for treemap visualization &ndash;&gt;-->
-        <!--<div id="treemap_plus_container"></div>-->
+        <!--&lt;!&ndash;&lt;!&ndash; create container element for treemap visualization &ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<div id="treemap_plus_container"></div>&ndash;&gt;-->
 
-        <div id="selected_colleges">
-            <p ng-repeat="college in colleges"> {{college.name}} </p>
-        </div>
+        <!--<div id="selected_colleges">-->
+            <!--<p ng-repeat="college in colleges"> {{college.name}} </p>-->
+        <!--</div>-->
 
-    </div>
+    <!--</div>-->
 
-</div> <!-- body container -->
+</div> <!-- employment container -->
+
+<div id="salary_container" class="jumbotron">
+
+    <h2 class="section-heading">Employment Salaries</h2>
+    <hr class="dark">
+
+    <div id="dashboard_container"></div>
+
+</div>
 
 <!-- Site footer -->
 <footer class="footer">
@@ -195,6 +205,8 @@
 <script src="js/employment_filter.js"></script>
 <script src="js/time_series.js"></script>
 <script src="js/treemap_plus.js"></script>
+
+<script src="js/dashboard.js"></script>
 
 <script src="js/index.js"></script>
 

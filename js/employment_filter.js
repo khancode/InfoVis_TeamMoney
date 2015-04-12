@@ -27,5 +27,10 @@ function EmploymentFilter()
     this.isExcluded = function(college) {
 
         return college in this.collegesExcluded;
-    }
+    };
+
+    this.clear = function() {
+        for (college in this.collegesExcluded)
+            delete this.collegesExcluded[college];
+    };
 }
