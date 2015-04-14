@@ -71,6 +71,7 @@ function TreeMap() {
                 .size("Employment Rate") //"medianSalary") //"value")      // sizing of blocks
                 .draw();             // finally, draw the visualization!
 
+            setOnCollegeRectClickListener();
         });
 
     };
@@ -79,6 +80,29 @@ function TreeMap() {
         d3.select('#treemap_plus_container').select('svg').remove();
         this.draw();
     };
+
+    function setOnCollegeRectClickListener()
+    {
+        // Wait for elements to be injected into html
+        setTimeout(function() {
+            $('#treemap_plus_container svg .d3plus_rect').click(function() {
+
+                var id = $(this).find("text").attr('id');
+                var split = id.split('_');
+
+                var college = '';
+                for (var i = 2; i < split.length - 1; i++) {
+                    college += split[i];
+
+                    if (i != split.length - 2)
+                        college += ' ';
+                }
+
+                console.log("College selected: " + college);
+            });
+        }, 1000);
+
+    }
 
     function parseDate(num)
     {

@@ -141,7 +141,10 @@ function TimeSeries() {
                 .on("brushend", brushend)
                 .on("brush", brushed);
 
-            context.append("g") // Create brushing xAxis
+            // Omar
+            var footer = d3.select("#time_scale_bar").append("svg");
+            //context.append("g") // Create brushing xAxis
+            footer.append("g") // Create brushing xAxis
                 .attr("class", "x axis1")
                 .attr("transform", "translate(0," + height2 + ")")
                 .call(xAxis2);
@@ -155,13 +158,15 @@ function TimeSeries() {
                 .y1(0); // Top line of area, 0 (area chart not inverted)
 
             //plot the rect as the bar at the bottom
-            context.append("path") // Path is created using svg.area details
+            //context.append("path") // Path is created using svg.area details
+            footer.append("path") // Path is created using svg.area details
                 .attr("class", "area")
                 .attr("d", contextArea(categories[0].values)) // pass first categories data .values to area path generator
                 .attr("fill", "#F1F1F2");
 
             //append the brush for the selection of subsection
-            context.append("g")
+            //context.append("g")
+            footer.append("g")
                 .attr("class", "x brush")
                 .call(brush)
                 .selectAll("rect")
