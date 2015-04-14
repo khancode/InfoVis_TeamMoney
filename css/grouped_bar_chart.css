@@ -1,0 +1,14 @@
+#bs_tuition_container .axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+#bs_tuition_container .bar {
+    fill: steelblue;
+}
+
+#bs_tuition_container .x.axis path {
+    display: none;
+}
