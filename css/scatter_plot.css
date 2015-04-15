@@ -1,0 +1,19 @@
+#scatter_plot_container {
+    width: 1900px;
+    margin: 0 auto;
+}
+
+#scatter_plot_container svg {
+    font: 10px sans-serif;
+}
+
+#scatter_plot_container .axis path,
+#scatter_plot_container .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+#scatter_plot_container .dot {
+    stroke: #000;
+}

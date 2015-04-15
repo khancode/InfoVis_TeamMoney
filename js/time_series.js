@@ -261,6 +261,12 @@ function TimeSeries() {
                     $employment_filter.filterCollege(college);
                     $tree_map.reDraw();
                     $overall_salary_dashboard.reDraw();
+
+                    // New content
+                    //$salary_employment_scatterplot.reDraw();
+                    //$salary_employment_scatterplot.update();
+
+                    $scatter_animation.update(true);
                 })
 
                 .on("mouseover", function (d) {
@@ -418,6 +424,13 @@ function TimeSeries() {
                 $employment_filter.setStartEndYear(startYear, endYear);
                 $tree_map.reDraw();
                 $overall_salary_dashboard.reDraw();
+
+                // New Content
+                //$salary_employment_scatterplot.reDraw();
+                //$salary_employment_scatterplot.update();
+
+                $scatter_animation.update(false);
+
             }
 
             //for brusher of the slider bar at the bottom

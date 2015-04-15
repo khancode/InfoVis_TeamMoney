@@ -1,0 +1,349 @@
+/**
+ * Created by khancode on 4/14/2015.
+ */
+
+// Setup data
+var dataset = [];  // Initialize empty array
+var numDataPoints = 15;  // Number of dummy data points
+var maxRange = Math.random() * 1000;  // Max range of new values
+for(var i=0; i<numDataPoints; i++) {
+    var newNumber1 = Math.floor(Math.random() * maxRange);  // New random integer
+    var newNumber2 = Math.floor(Math.random() * maxRange);  // New random integer
+    dataset.push([newNumber1, newNumber2]);  // Add new number to array
+}
+
+$scatter_animation = new ScatterAnimation();
+$scatter_animation.draw();
+
+function ScatterAnimation() {
+
+    var xScale;
+    var yScale;
+    var xAxis;
+    var yAxis;
+    var svg;
+
+    var allData;
+
+    this.draw = function() {
+
+        d3.json("json/all_data.json", function (error, data) {
+
+            allData = data;
+            dataset = filterData();
+            doIt();
+        });
+
+        function doIt() {
+            // Setup settings for graphic
+            var canvas_width = 1800;
+            var canvas_height = 550;
+            var padding = 30;  // for chart edges
+
+            // Create scale functions
+            xScale = d3.scale.linear()  // xScale is width of graphic
+                .domain([0, d3.max(dataset, function (d) {
+                    //return d[0];  // input domain
+                    return d['Placement Rate'];  // input domain
+                })])
+                .range([padding, canvas_width - padding * 2]); // output range
+
+            yScale = d3.scale.linear()  // yScale is height of graphic
+                .domain([0, d3.max(dataset, function (d) {
+                    //return d[1];  // input domain
+                    return d['Median Overall Salary'];  // input domain
+                })])
+                .range([canvas_height - padding, padding]);  // remember y starts on top going down so we flip
+
+            // Define X axis
+            xAxis = d3.svg.axis()
+                .scale(xScale)
+                .orient("bottom")
+                .ticks(10);
+
+            // Define Y axis
+            yAxis = d3.svg.axis()
+                .scale(yScale)
+                .orient("left")
+                .ticks(5);
+
+            // Create SVG element
+            svg = d3.select("#scatter_plot_container")  // This is where we put our vis
+                .append("svg")
+                .attr("width", canvas_width)
+                .attr("height", canvas_height)
+
+            var color = d3.scale.category10();
+
+            // Create Circles
+            svg.selectAll("circle")
+                .data(dataset)
+                .enter()
+                .append("circle")  // Add circle svg
+                .attr("cx", function (d) {
+                    //return xScale(d[0]);  // Circle's X
+                    return xScale(d['Placement Rate']);  // Circle's X
+                })
+                .attr("cy", function (d) {  // Circle's Y
+                    //return yScale(d[1]);
+                    return yScale(d['Median Overall Salary']);
+                })
+                .attr("r", 10)  // radius
+                .style("fill", function (d) {
+                    //return color(d.species);
+                    return $index.getCollegeColor(d['College']);
+                });
+
+            // Add to X axis
+            svg.append("g")
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + (canvas_height - padding) + ")")
+                .call(xAxis)
+                .append("text")
+                .attr("class", "label")
+                .attr("x", canvas_width - 50)
+                .attr("y", -6)
+                .style("text-anchor", "end")
+                .text("Employment Rate (%)");
+
+            // Add to Y axis
+            svg.append("g")
+                .attr("class", "y axis")
+                .attr("transform", "translate(" + padding + ",0)")
+                .call(yAxis)
+                .append("text")
+                .attr("class", "label")
+                .attr("transform", "rotate(-90)")
+                .attr("x", -25)
+                .attr("y", 6)
+                .attr("dy", ".71em")
+                .style("text-anchor", "end")
+                .text("Salary ($)");
+
+            // On click, update with new data
+            d3.select("#scatter_plot_container")
+                .on("click", function () {
+                    //var numValues = dataset.length;  // Get original dataset's length
+                    //var maxRange = Math.random() * 1000;  // Get max range of new values
+                    //dataset = [];  // Initialize empty array
+                    //for (var i = 0; i < numValues; i++) {
+                    //    var newNumber1 = Math.floor(Math.random() * maxRange);  // Random int for x
+                    //    var newNumber2 = Math.floor(Math.random() * maxRange);  // Random int for y
+                    //    dataset.push([newNumber1, newNumber2]);  // Add new numbers to array
+                    //}
+
+                    dataset = filterData();
+
+                    // Update scale domains
+                    xScale.domain([0, d3.max(dataset, function (d) {
+                        //return d[0];
+                        return d['Placement Rate'];
+                    })]);
+                    yScale.domain([0, d3.max(dataset, function (d) {
+                        //return d[1];
+                        return d['Median Overall Salary'];
+                    })]);
+
+                    // Update circles
+                    svg.selectAll("circle")
+                        .data(dataset)  // Update with new data
+                        .transition()  // Transition from old to new
+                        .duration(2000)  // Length of animation
+                        .each("start", function () {  // Start animation
+                            d3.select(this)  // 'this' means the current element
+                                .attr("fill", "red")  // Change color
+                                .attr("r", 5);  // Change size
+                        })
+                        .delay(function (d, i) {
+                            return i / dataset.length * 500;  // Dynamic delay (i.e. each item delays a little longer)
+                        })
+                        //.ease("linear")  // Transition easing - default 'variable' (i.e. has acceleration), also: 'circle', 'elastic', 'bounce', 'linear'
+                        .attr("cx", function (d) {
+                            //return xScale(d[0]);  // Circle's X
+                            return xScale(d['Placement Rate']);  // Circle's X
+                        })
+                        .attr("cy", function (d) {
+                            //return yScale(d[1]);  // Circle's Y
+                            return yScale(d['Median Overall Salary']);  // Circle's Y
+                        })
+                        .each("end", function () {  // End animation
+                            d3.select(this)  // 'this' means the current element
+                                .transition()
+                                .duration(500)
+                                .attr("fill", "black")  // Change color
+                                .attr("r", 2);  // Change radius
+                        });
+
+                    // Update X Axis
+                    svg.select(".x.axis")
+                        .transition()
+                        .duration(1000)
+                        .call(xAxis);
+
+                    // Update Y Axis
+                    svg.select(".y.axis")
+                        .transition()
+                        .duration(100)
+                        .call(yAxis);
+                });
+        }
+
+    };
+
+    this.update = function(collegeFilter) {
+
+        dataset = filterData();
+
+        // Update scale domains
+        xScale.domain([0, d3.max(dataset, function (d) {
+            //return d[0];
+            return d['Placement Rate'];
+        })]);
+        yScale.domain([0, d3.max(dataset, function (d) {
+            //return d[1];
+            return d['Median Overall Salary'];
+        })]);
+
+        if (collegeFilter)
+        {
+            var circle = svg.selectAll("circle")
+                .data(dataset);
+
+            circle.enter()
+                .append("circle")  // Add circle svg
+                .attr("cx", function (d) {
+                    //return xScale(d[0]);  // Circle's X
+                    return xScale(d['Placement Rate']);  // Circle's X
+                })
+                .attr("cy", function (d) {  // Circle's Y
+                    //return yScale(d[1]);
+                    return yScale(d['Median Overall Salary']);
+                })
+                .attr("r", 10)  // radius
+                .style("fill", function (d) {
+                    //return color(d.species);
+                    return $index.getColor(d['College']);
+                });
+
+            circle.exit()
+                .remove();
+
+        }
+        else {
+            // Update circles
+            svg.selectAll("circle")
+                .data(dataset)  // Update with new data
+                .transition()  // Transition from old to new
+                .duration(2000)  // Length of animation
+                .each("start", function () {  // Start animation
+                    d3.select(this)  // 'this' means the current element
+                        .attr("fill", "red")  // Change color
+                        .attr("r", 5);  // Change size
+                })
+                .delay(function (d, i) {
+                    return i / dataset.length * 500;  // Dynamic delay (i.e. each item delays a little longer)
+                })
+                //.ease("linear")  // Transition easing - default 'variable' (i.e. has acceleration), also: 'circle', 'elastic', 'bounce', 'linear'
+                .attr("cx", function (d) {
+                    //return xScale(d[0]);  // Circle's X
+                    return xScale(d['Placement Rate']);  // Circle's X
+                })
+                .attr("cy", function (d) {
+                    //return yScale(d[1]);  // Circle's Y
+                    return yScale(d['Median Overall Salary']);  // Circle's Y
+                })
+                .each("end", function () {  // End animation
+                    d3.select(this)  // 'this' means the current element
+                        .transition()
+                        .duration(500)
+                        .attr("fill", "black")  // Change color
+                        .attr("r", 10);  // Change radius
+                });
+        }
+
+        // Update X Axis
+        svg.select(".x.axis")
+            .transition()
+            .duration(2000)
+            .call(xAxis);
+
+        // Update Y Axis
+        svg.select(".y.axis")
+            .transition()
+            .duration(100)
+            .call(yAxis);
+    };
+
+    /**
+     * Helper functions
+     * @returns {Array}
+     */
+
+    function filterData() {
+        var hashMap = {};
+
+        allData.forEach(function (d) {
+
+            var college = d['College'];
+            if ($employment_filter.isExcluded(college))
+                return;
+
+            var date = parseDate(d['Date']);
+            var degreeLevel = d['Level'];
+            var medianSalary = d['Median Overall Salary'];
+            var employmentRate = d['Placement Rate'];
+
+            if (date.year >= $employment_filter.getStartYear() && date.year <= $employment_filter.getEndYear()) {
+                if (degreeLevel == $employment_filter.getDegreeLevel()) {
+                    if (college in hashMap == false)
+                        hashMap[college] = [[employmentRate, medianSalary]]; //[medianSalary];
+                    else
+                        hashMap[college].push([employmentRate, medianSalary]); //medianSalary);
+                }
+            }
+        });
+
+        var arr_data = [];
+        for (var college in hashMap) {
+            var employmentRateAvg = average(hashMap[college], 0);
+            var medianSalaryAvg = average(hashMap[college], 1);
+
+            //arr_data.push({"college":college, "medianSalary":avg});
+            arr_data.push({
+                "College": college,
+                "Placement Rate": employmentRateAvg,
+                "Median Overall Salary": medianSalaryAvg
+            });
+        }
+
+        return arr_data;
+    }
+
+    function parseDate(num) {
+        var str = num.toString();
+
+        var month = str.substring(4, 6);
+        var day = str.substring(6, 8);
+        var year = parseInt(str.substring(0, 4));
+
+        return new Date(month, day, year);
+
+        function Date(month, day, year) {
+            this.month = month;
+            this.day = day;
+            this.year = year;
+            this.toString = function () {
+                return 'month: ' + this.month + ', day: ' + this.day + ', year: ' + this.year;
+            };
+        }
+    }
+
+    function average(numArr, index) {
+        var avg = 0;
+        for (i in numArr)
+            avg += numArr[i][index];
+
+        return avg / numArr.length;
+    }
+
+}

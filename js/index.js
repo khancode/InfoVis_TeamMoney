@@ -20,6 +20,24 @@ $('.degree_radio_group').on('change', function() {
     $employment_filter.clear(degreeLevel);
 });
 
+
+$index = new CollegeColors();
+
+function CollegeColors()
+{
+    var collegeColors = {'College of Architecture':'#B22200',
+        'College of Computing':'#EACE3F',
+        'College of Engineering':'#282F6B',
+        'Ivan Allen College':'#B35C1E',
+        'Scheller College of Business':'#224F20',
+        'College of Sciences':'#5F487C'
+    };
+
+    this.getCollegeColor = function(college) {
+        return collegeColors[college];
+    };
+}
+
 //var colleges;
 
 ///* Omar wrote this */
