@@ -10,8 +10,6 @@ function TreeMap() {
 
     this.draw = function() {
 
-        $('#treemap_years_text').text('Years ' + $employment_filter.getStartYear() + ' - ' + $employment_filter.getEndYear());
-
         var filename = 'json/all_data.json';
 
         d3.json(filename, function (error, data) {

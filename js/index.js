@@ -11,13 +11,13 @@ $('.degree_radio_group').on('change', function() {
     //Omar
     $employment_filter.setDegreeLevel(degreeLevel);
 
-    $time_series.reDraw();
+    $time_series.update();
     $tree_map.reDraw();
-    $overall_salary_dashboard.reDraw();
+    //$overall_salary_dashboard.reDraw();
 
     // TODO the years and filter shouldn't be reset, need to fix this update.
-    $('#treemap_years_text').text('Years 2006 - 2014');
-    $employment_filter.clear(degreeLevel);
+    //$('#treemap_years_text').text('Years 2006 - 2014');
+    //$employment_filter.clear(degreeLevel);
 });
 
 

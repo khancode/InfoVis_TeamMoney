@@ -155,25 +155,12 @@
         <hr class="dark">
 
         <div id="time_series_container">
-            <div class="radio">
-                <label>
-                    <input type="radio" name="optionsRadios" class="degree_radio_group" id="bsDegreeRadio" value="Bachelors" checked>
-                    BS (Bachelor of Science) Degree
-                </label>
-            </div>
-            <div class="radio">
-                <label>
-                    <input type="radio" name="optionsRadios" class="degree_radio_group" id="msDegreeRadio" value="Masters">
-                    MS (Master of Science) Degree
-                </label>
-            </div>
+
         </div>
 
         <!-- create container element for treemap visualization -->
         <div id="treemap_plus">
             <!--<a href="#salaries" class="btn btn-primary btn-xl page-scroll">Get Started!</a>-->
-            <h3 id="treemap_years_text">Years 2006 - 2014</h3>
-            <h4>(Average of employment rates for the years above)</h4>
             <div id="treemap_plus_container"></div>
         </div>
 
@@ -206,9 +193,29 @@
 </div>
 
 <div id="footer">
-    <div id="degree_filter"><p>BS/MS Degree Filter goes here</p></div>
-    <div id="time_scale_bar"></div>
-    <div id="college_filter_legend"></div>
+    <div id="degree_filter">
+        <div id="degree_radio_button_container">
+            <div class="radio">
+                <label>
+                    <input type="radio" name="optionsRadios" class="degree_radio_group" id="bsDegreeRadio" value="Bachelors" checked>
+                    BS (Bachelor of Science) Degree
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="optionsRadios" class="degree_radio_group" id="msDegreeRadio" value="Masters">
+                    MS (Master of Science) Degree
+                </label>
+            </div>
+        </div>
+    </div>
+    <div id="college_filter">
+        <div id="college_filter_legend"></div>
+    </div>
+    <div id="time_scale_bar">
+        <h4 id="time_scale_years_text">Years 2006 - 2014</h4>
+        <h5>(Data averaged for the years above)</h5>
+    </div>
 
 </div>
 

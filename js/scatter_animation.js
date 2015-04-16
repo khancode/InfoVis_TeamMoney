@@ -222,7 +222,7 @@ function ScatterAnimation() {
                 .attr("r", 10)  // radius
                 .style("fill", function (d) {
                     //return color(d.species);
-                    return $index.getColor(d['College']);
+                    return $index.getCollegeColor(d['College']);
                 });
 
             circle.exit()

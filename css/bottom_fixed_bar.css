@@ -2,18 +2,23 @@
 {
     background-color:lightskyblue;
     position:fixed;
-    bottom:0px;
-    left:0px;
-    right:0px;
-    height:150px;
-    /*margin-bottom:0px;*/
+    bottom:0;
+    left:0;
+    right:0;
+    height:125px;
     margin: 0 auto;
-
 }
 
 #degree_filter {
+    height:100%;
     width:20%;
     float:left;
+}
+
+#degree_radio_button_container {
+    width:250px;
+    margin: 0 auto;
+    margin-top: 7%;
 }
 
 #time_scale_bar {
@@ -24,21 +29,32 @@
     /*margin: 0 auto;*/
 }
 
+#time_scale_years_text,
+#time_scale_bar h5 {
+    width: 250px;
+    margin: 0 auto;
+    text-align: center;
+}
+
 #time_scale_bar svg {
     padding-left: 25px;
     height:100px;
     width: 750px;
 }
 
-#college_filter_legend {
-    /*height: 25px;*/
-    height: 100px;
-    /*width: 750px;*/
-    width: 40%;
-    /*margin: 0 auto;*/
+#college_filter {
+    height:100%;
+    width:40%;
     float:left;
+}
+
+#college_filter_legend {
+    height: 100px;
+    width: 650px;
+    margin: 0 auto;
 }
 
 #college_filter_legend svg {
     height:100px;
+    width:650px;
 }
