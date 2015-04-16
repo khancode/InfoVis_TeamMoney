@@ -30,8 +30,8 @@ function TimeSeries() {
 
         var margin = {top: 20, right: 200, bottom: 100, left: 50},
             margin2 = {top: 430, right: 10, bottom: 20, left: 40},
-            width = 1000 - margin.left - margin.right,
-            height = 500 - margin.top - margin.bottom,
+            width = 1100 - margin.left - margin.right,
+            height = 600 - margin.top - margin.bottom,
             height2 = 500 - margin2.top - margin2.bottom;
 
         var parseDate = d3.time.format("%Y%m%d").parse;
@@ -300,6 +300,16 @@ function TimeSeries() {
                             return d.visible ? color(d.name) : "#F1F1F2";
                         });
 
+                    d3.select(this)
+                        .transition()
+                        .attr("fill", function (d) {
+                            return d.visible ? color(d.name) : "#F1F1F2";
+                        });
+
+                    d3.select("#line-" + d.name.replace(" ", "").replace("/", ""))
+                        .transition()
+                        .style("stroke-width", 1.5);
+
                     //var yo = $(this).next();
                     var college = $(this).next().text();
                     console.log(college);
@@ -317,28 +327,28 @@ function TimeSeries() {
 
                 .on("mouseover", function (d) {
 
-                    d3.select(this)
-                        .transition()
-                        .attr("fill", function (d) {
-                            return color(d.name);
-                        });
-
-                    d3.select("#line-" + d.name.replace(" ", "").replace("/", ""))
-                        .transition()
-                        .style("stroke-width", 2.5);
+                    //d3.select(this)
+                    //    .transition()
+                    //    .attr("fill", function (d) {
+                    //        return color(d.name);
+                    //    });
+                    //
+                    //d3.select("#line-" + d.name.replace(" ", "").replace("/", ""))
+                    //    .transition()
+                    //    .style("stroke-width", 2.5);
                 })
 
                 .on("mouseout", function (d) {
 
-                    d3.select(this)
-                        .transition()
-                        .attr("fill", function (d) {
-                            return d.visible ? color(d.name) : "#F1F1F2";
-                        });
-
-                    d3.select("#line-" + d.name.replace(" ", "").replace("/", ""))
-                        .transition()
-                        .style("stroke-width", 1.5);
+                    //d3.select(this)
+                    //    .transition()
+                    //    .attr("fill", function (d) {
+                    //        return d.visible ? color(d.name) : "#F1F1F2";
+                    //    });
+                    //
+                    //d3.select("#line-" + d.name.replace(" ", "").replace("/", ""))
+                    //    .transition()
+                    //    .style("stroke-width", 1.5);
                 });
 
             //issue.append("text")

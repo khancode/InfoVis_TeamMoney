@@ -424,9 +424,6 @@ function ScatterAnimation() {
             });
         }
 
-        console.log("filterData(): ");
-        console.log(arr_data);
-
         return arr_data;
     }
 
