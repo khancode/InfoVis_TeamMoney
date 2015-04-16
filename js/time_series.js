@@ -221,13 +221,38 @@ function TimeSeries() {
             // draw legend
             var legendSpace = 450 / categories.length; // 450/number of issues (ex. 40)
 
-            issue.append("rect")
-                .attr("width", 10)
-                .attr("height", 10)
-                .attr("x", width + (margin.right / 3) - 15)
-                .attr("y", function (d, i) {
-                    return (legendSpace) + i * (legendSpace) - 8;
-                })  // spacing
+            // OMAR
+            var datFeel = d3.select('#college_filter_legend').append('svg')
+                .attr("width", 750)
+                .selectAll(".issue")
+                .data(categories) // Select nested data and append to new svg group elements
+                .enter().append("g")
+                .attr("class", "issue");
+
+            var sup = 2;
+            //issue.append("rect")
+            datFeel.append("rect")
+                .attr("width", 20)
+                .attr("height", 20)
+                .attr("x", function(d, i) { //width + (margin.right / 3) - 15)
+                    if (d.name == 'College of Architecture' || d.name == 'Ivan Allen College')
+                        return 5;
+                    else if (d.name == 'College of Computing' || d.name == 'Scheller College of Business')
+                        return 210;
+                    else if (d.name == 'College of Engineering' || d.name == 'College of Sciences')
+                        return 450;
+                    else
+                        return 150 * i;
+                })
+                .attr("y", function(d, i) {
+                    if (d.name == 'College of Architecture' || d.name == 'College of Computing' || d.name == 'College of Engineering')
+                        return 25;
+                    else
+                        return 60;
+                })
+                //.attr("y", function (d, i) {
+                //    return (legendSpace) + i * (legendSpace) - 8;
+                //})  // spacing
                 .attr("fill", function (d) {
                     return d.visible ? color(d.name) : "#F1F1F2"; // If array key "visible" = true then color rect, if not then make it grey
                 })
@@ -260,7 +285,7 @@ function TimeSeries() {
 
                     $employment_filter.filterCollege(college);
                     $tree_map.reDraw();
-                    $overall_salary_dashboard.reDraw();
+                    //$overall_salary_dashboard.reDraw();
 
                     // New content
                     //$salary_employment_scatterplot.reDraw();
@@ -295,11 +320,29 @@ function TimeSeries() {
                         .style("stroke-width", 1.5);
                 });
 
-            issue.append("text")
-                .attr("x", width + (margin.right / 3))
-                .attr("y", function (d, i) {
-                    return (legendSpace) + i * (legendSpace);
-                })  // (return (11.25/2 =) 5.625) + i * (5.625)
+            //issue.append("text")
+            datFeel.append("text")
+                .attr("x", function(d, i) { //width + (margin.right / 3))
+                    if (d.name == 'College of Architecture' || d.name == 'Ivan Allen College')
+                        return 30;
+                    else if (d.name == 'College of Computing' || d.name == 'Scheller College of Business')
+                        return 235;
+                    else if (d.name == 'College of Engineering' || d.name == 'College of Sciences')
+                        return 475;
+                    else
+                        return 250 * i;
+                })
+                .attr("y", function(d, i) {
+                    if (d.name == 'College of Architecture' || d.name == 'College of Computing' || d.name == 'College of Engineering')
+                        return 37;
+                    else if (d.name == 'Ivan Allen College' || d.name == 'Scheller College of Business' || d.name == 'College of Sciences')
+                        return 75;
+                    else
+                        return 25;
+                })
+                //.attr("y", 25) //function (d, i) {
+                    //return (legendSpace) + i * (legendSpace);
+                //})  // (return (11.25/2 =) 5.625) + i * (5.625)
                 .text(function (d) {
                     return d.name;
                 });
@@ -423,7 +466,7 @@ function TimeSeries() {
                 // Omar
                 $employment_filter.setStartEndYear(startYear, endYear);
                 $tree_map.reDraw();
-                $overall_salary_dashboard.reDraw();
+                //$overall_salary_dashboard.reDraw();
 
                 // New Content
                 //$salary_employment_scatterplot.reDraw();

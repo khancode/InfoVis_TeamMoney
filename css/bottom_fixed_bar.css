@@ -1,0 +1,44 @@
+#footer
+{
+    background-color:lightskyblue;
+    position:fixed;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    height:150px;
+    /*margin-bottom:0px;*/
+    margin: 0 auto;
+
+}
+
+#degree_filter {
+    width:20%;
+    float:left;
+}
+
+#time_scale_bar {
+    height:100px;
+    /*width: 750px;*/
+    width:40%;
+    float:left;
+    /*margin: 0 auto;*/
+}
+
+#time_scale_bar svg {
+    padding-left: 25px;
+    height:100px;
+    width: 750px;
+}
+
+#college_filter_legend {
+    /*height: 25px;*/
+    height: 100px;
+    /*width: 750px;*/
+    width: 40%;
+    /*margin: 0 auto;*/
+    float:left;
+}
+
+#college_filter_legend svg {
+    height:100px;
+}
