@@ -12,6 +12,7 @@ $('.degree_radio_group').on('change', function() {
     $employment_filter.setDegreeLevel(degreeLevel);
 
     $time_series.update();
+    $scatter_animation.update();
     $tree_map.reDraw();
     //$overall_salary_dashboard.reDraw();
 
@@ -36,6 +37,14 @@ function CollegeColors()
     this.getCollegeColor = function(college) {
         return collegeColors[college];
     };
+
+    this.getCollegeFromColor = function(color) {
+
+        for (var key in collegeColors) {
+            if (color == collegeColors[key])
+                return key;
+        }
+    }
 }
 
 //var colleges;

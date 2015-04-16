@@ -23,6 +23,9 @@ function EmploymentFilter()
             delete collegesExcluded[college];
         else
             collegesExcluded[college] = true;
+
+        console.log('college to be excluded: ' + college);
+        console.log(collegesExcluded);
     };
 
     this.isExcluded = function(college) {

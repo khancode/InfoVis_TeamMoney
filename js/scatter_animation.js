@@ -193,6 +193,7 @@ function ScatterAnimation() {
     this.update = function(collegeFilter) {
 
         dataset = filterData();
+        //dataset = allData;
 
         // Update scale domains
         xScale.domain([0, d3.max(dataset, function (d) {
@@ -206,27 +207,36 @@ function ScatterAnimation() {
 
         if (collegeFilter)
         {
+            //circle = svg.selectAll("circle")
+            //    .style("fill", function(d){
+            //        return $employment_filter.isExcluded(d['College']) ? '#FFFFFF' : $index.getCollegeColor(d['College']);
+            //
+            //    });
+
             var circle = svg.selectAll("circle")
                 .data(dataset);
 
-            circle.enter()
-                .append("circle")  // Add circle svg
-                .attr("cx", function (d) {
-                    //return xScale(d[0]);  // Circle's X
-                    return xScale(d['Placement Rate']);  // Circle's X
-                })
-                .attr("cy", function (d) {  // Circle's Y
-                    //return yScale(d[1]);
-                    return yScale(d['Median Overall Salary']);
-                })
-                .attr("r", 10)  // radius
-                .style("fill", function (d) {
-                    //return color(d.species);
-                    return $index.getCollegeColor(d['College']);
-                });
+            myEnter();
+            myExit();
 
-            circle.exit()
-                .remove();
+            //circle.enter()
+            //    .append("circle")  // Add circle svg
+            //    .attr("cx", function (d) {
+            //        //return xScale(d[0]);  // Circle's X
+            //        return xScale(d['Placement Rate']);  // Circle's X
+            //    })
+            //    .attr("cy", function (d) {  // Circle's Y
+            //        //return yScale(d[1]);
+            //        return yScale(d['Median Overall Salary']);
+            //    })
+            //    .attr("r", 10)  // radius
+            //    .style("fill", function (d) {
+            //        //return color(d.species);
+            //        return $index.getCollegeColor(d['College']);
+            //    });
+
+            //circle.exit()
+            //    .remove();
 
         }
         else {
@@ -259,19 +269,117 @@ function ScatterAnimation() {
                         .attr("fill", "black")  // Change color
                         .attr("r", 10);  // Change radius
                 });
+
+            // Update X Axis
+            svg.select(".x.axis")
+                .transition()
+                .duration(2000)
+                .call(xAxis);
+
+            // Update Y Axis
+            svg.select(".y.axis")
+                .transition()
+                .duration(100)
+                .call(yAxis);
         }
 
-        // Update X Axis
-        svg.select(".x.axis")
-            .transition()
-            .duration(2000)
-            .call(xAxis);
+        function myEnter() {
 
-        // Update Y Axis
-        svg.select(".y.axis")
-            .transition()
-            .duration(100)
-            .call(yAxis);
+            //console.log('dataset: ');
+            //console.log(dataset);
+
+            var circlesHashMap = {}
+            for (var i in dataset)
+                circlesHashMap[dataset[i]['College']] = true; // add filtered colleges
+
+            //console.log('circlesHashMap: ');
+            //console.log(circlesHashMap);
+
+            $('#scatter_plot_container svg circle').each(function () {
+
+                var circleColor = $(this).css('fill');
+                var college = $index.getCollegeFromColor(rgb2hex(circleColor).toUpperCase());
+
+                for (var i in circlesHashMap) {
+                    if (college in circlesHashMap)
+                        delete circlesHashMap[college];
+                }
+
+            });
+
+            console.log('isEmptyObject(circlesHashmap): ' + $.isEmptyObject(circlesHashMap));
+
+            if ($.isEmptyObject(circlesHashMap) == false) {
+
+                svg.selectAll("circle").remove();
+
+                // Create Circles
+                svg.selectAll("circle")
+                    .data(dataset)
+                    .enter()
+                    .append("circle")  // Add circle svg
+                    .attr("cx", function (d) {
+                        //return xScale(d[0]);  // Circle's X
+                        return xScale(d['Placement Rate']);  // Circle's X
+                    })
+                    .attr("cy", function (d) {  // Circle's Y
+                        //return yScale(d[1]);
+                        return yScale(d['Median Overall Salary']);
+                    })
+                    .attr("r", 10)  // radius
+                    .style("fill", function (d) {
+                        //return color(d.species);
+                        return $index.getCollegeColor(d['College']);
+                    });
+
+                // Update X Axis
+                svg.select(".x.axis")
+                    .transition()
+                    .duration(2000)
+                    .call(xAxis);
+
+                // Update Y Axis
+                svg.select(".y.axis")
+                    .transition()
+                    .duration(100)
+                    .call(yAxis);
+            }
+
+        }
+
+        function myExit()
+        {
+            // jQuery magic
+            $('#scatter_plot_container svg circle').each(function () {
+
+                var circleColor = $(this).css('fill');
+                //console.log(circleColor);
+
+                //console.log('dude: ' + rgb2hex(circleColor).toUpperCase());
+                //console.log('bruh: ' + $index.getCollegeColor('College of Computing'));
+
+                var college = $index.getCollegeFromColor(rgb2hex(circleColor).toUpperCase());
+
+                if ($employment_filter.isExcluded(college))
+                    $(this).remove();
+
+                //if (rgb2hex(circleColor).toUpperCase() == $index.getCollegeColor('College of Computing')) {
+                //    console.log('circleColor matches!');
+                //    $(this).remove();
+                //}
+            });
+
+        }
+
+        //Function to convert hex format to a rgb color
+        function rgb2hex(rgb){
+            rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+            return "#" +
+                ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) +
+                ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) +
+                ("0" + parseInt(rgb[3],10).toString(16)).slice(-2);
+        }
+
     };
 
     /**
@@ -315,6 +423,9 @@ function ScatterAnimation() {
                 "Median Overall Salary": medianSalaryAvg
             });
         }
+
+        console.log("filterData(): ");
+        console.log(arr_data);
 
         return arr_data;
     }
