@@ -1,0 +1,79 @@
+#salary_employment_rates_section {
+    width:75%;
+    height: 700px;
+    margin: 0 auto;
+}
+
+/*
+    for salary & employment rate scatter plot
+                                                */
+#salary_employment_container {
+    width: 49%;
+    height: 700px;
+    margin-right: 1%;
+    /*margin: 0 auto;*/
+    float:left;
+}
+
+#scatter_plot_container {
+    width: 100%;
+    height: 350px;
+    margin: 0 auto;
+}
+
+#scatter_plot_container svg {
+    padding-left: 25px;
+}
+
+/* Format X and Y Axis */
+#scatter_plot_container .axis path,
+#scatter_plot_container .axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+
+#scatter_plot_container .axis text {
+    font-family: sans-serif;
+    font-size: 14px;
+}
+
+/*
+    for time series and tree map vizs
+                                        */
+#timeseries_treemap_container {
+    width:49%;
+    height:700px;
+    margin-left: 1%;
+    /*margin: 0 auto;*/
+    float:left;
+}
+    /** Time series **/
+#time_series_container {
+    /*width: 1100px;*/
+    width:100%;
+    height: 350px; /*300px;*/
+    /*margin: 0 auto;*/
+    /*padding-left: 25px;*/
+    display: inline-block;
+    /*float:left;*/
+}
+
+#time_series_container svg {
+    width: 100%; /*1000px;*/
+    /*display: block;*/
+    /*margin: 0 auto;*/
+}
+
+    /** Tree map **/
+#tree_map {
+    width:100%;
+    /*height:50%;*/
+    /*height: 400px;*/
+}
+
+#treemap_plus_container {
+    /*width:100%;*/
+    /*height:100%;*/
+    height: 350px;
+}

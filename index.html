@@ -20,10 +20,9 @@
 
     <!-- css for this file -->
     <link href="css/index.css" rel="stylesheet">
+    <link href="css/salary_employment_rates_section.css" rel="stylesheet">
     <!--<link href="css/scatter_plot.css" rel="stylesheet">-->
-    <link href="css/scatter_animation.css" rel="stylesheet">
     <link href="css/time_series.css" rel="stylesheet">
-    <link href="css/treemap_plus.css" rel="stylesheet">
     <link href="css/dashboard.css" rel="stylesheet">
     <link href="css/bottom_fixed_bar.css" rel="stylesheet">
 
@@ -81,7 +80,7 @@
                     <a class="page-scroll" href="#about">About</a>
                 </li>
                 <li class="">
-                    <a class="page-scroll" href="#salary_employment_section">Overview</a>
+                    <a class="page-scroll" href="#salary_employment_rates_section">Overview</a>
                 </li>
                 <li class="">
                     <a class="page-scroll" href="#employment_container">Employment</a>
@@ -114,7 +113,7 @@
                 <h2 class="section-heading">About</h2>
                 <hr class="light">
                 <p class="text-faded">Start Bootstrap has everything you need to get your new website up and running in no time! All of the templates and themes on Start Bootstrap are open source, free to download, and easy to use. No strings attached!</p>
-                <a href="#salary_employment_section" class="btn btn-default btn-xl page-scroll">Tuition vs. Salary!</a>
+                <a href="#salary_employment_rates_section" class="btn btn-default btn-xl page-scroll">Tuition vs. Salary!</a>
             </div>
         </div>
     </div>
@@ -138,12 +137,27 @@
 
 <!-- -------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
-<section id="salary_employment_section" class="jumbotron">
+<section id="salary_employment_rates_section" class="jumbotron">
 
-    <h2 class="section-heading">Salary & Employment</h2>
-    <hr class="dark">
+    <div id="salary_employment_container">
+        <!--<h2 class="section-heading">Salary & Employment</h2>-->
+        <!--<hr class="dark">-->
 
-    <div id="scatter_plot_container"></div>
+        <div id="scatter_plot_container"></div>
+    </div>
+
+    <div id="timeseries_treemap_container">
+        <!--<h2 class="section-heading">Employment Rates</h2>-->
+        <!--<hr class="dark">-->
+
+        <div id="time_series_container"></div>
+        <!--<div id="treemap_plus_container"></div>-->
+
+        <div id="treemap_plus">
+            <!--<a href="#salaries" class="btn btn-primary btn-xl page-scroll">Get Started!</a>-->
+            <div id="treemap_plus_container"></div>
+        </div>
+    </div>
 
 </section>
 
@@ -151,18 +165,18 @@
     <!-- Jumbotron for Time Series -->
     <!--<div id="viz_container" class="jumbotron">-->
 
-        <h2 class="section-heading">Employment Rates</h2>
-        <hr class="dark">
+        <!--<h2 class="section-heading">Employment Rates</h2>-->
+        <!--<hr class="dark">-->
 
-        <div id="time_series_container">
+        <!--<div id="time_series_container">-->
 
-        </div>
+        <!--</div>-->
 
-        <!-- create container element for treemap visualization -->
-        <div id="treemap_plus">
-            <!--<a href="#salaries" class="btn btn-primary btn-xl page-scroll">Get Started!</a>-->
-            <div id="treemap_plus_container"></div>
-        </div>
+        <!--&lt;!&ndash; create container element for treemap visualization &ndash;&gt;-->
+        <!--<div id="treemap_plus">-->
+            <!--&lt;!&ndash;<a href="#salaries" class="btn btn-primary btn-xl page-scroll">Get Started!</a>&ndash;&gt;-->
+            <!--<div id="treemap_plus_container"></div>-->
+        <!--</div>-->
 
     <!--</div>-->
 

@@ -36,8 +36,8 @@ function ScatterAnimation() {
 
         function doIt() {
             // Setup settings for graphic
-            var canvas_width = 1000;
-            var canvas_height = 550;
+            var canvas_width = $('#scatter_plot_container').width();//700;
+            var canvas_height = $('#scatter_plot_container').height(); //350;
             var padding = 30;  // for chart edges
 
             // Create scale functions
