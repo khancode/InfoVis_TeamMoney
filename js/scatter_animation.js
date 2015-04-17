@@ -36,7 +36,7 @@ function ScatterAnimation() {
 
         function doIt() {
             // Setup settings for graphic
-            var canvas_width = 1800;
+            var canvas_width = 1000;
             var canvas_height = 550;
             var padding = 30;  // for chart edges
 

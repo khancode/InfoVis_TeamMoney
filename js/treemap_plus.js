@@ -67,6 +67,7 @@ function TreeMap() {
                 .type("tree_map")   // visualization type
                 .id("college") //"name")         // key for which our data is unique on
                 .size("Employment Rate") //"medianSalary") //"value")      // sizing of blocks
+                .timing({"transitions": 1500})
                 .draw();             // finally, draw the visualization!
 
             setOnCollegeRectClickListener();

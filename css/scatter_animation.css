@@ -1,12 +1,12 @@
 #scatter_plot_container {
-    width: 1900px;
+    width: 1000px;
     margin: 0 auto;
 }
 
 #scatter_plot_container svg {
     padding-left: 25px;
     /*padding-right: 30px;*/
-    width: 1800px;
+    width: 1000px;
     height: 550px;
 }
 
