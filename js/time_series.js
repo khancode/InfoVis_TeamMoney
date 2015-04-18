@@ -41,7 +41,7 @@ function TimeSeries() {
         }).left;
 
         xScale = d3.time.scale()
-            .range([0, width]),
+            .range([0, width]);
 
             xScale2 = d3.time.scale()
                 .range([0, width]); // Duplicate xScale for brushing ref later
@@ -52,7 +52,8 @@ function TimeSeries() {
 
         xAxis = d3.svg.axis()
             .scale(xScale)
-            .orient("bottom"),
+            .orient("bottom")
+            .ticks(d3.time.year, 1);
 
             xAxis2 = d3.svg.axis() // xAxis for brush slider
                 .scale(xScale2)
