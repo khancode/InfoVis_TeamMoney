@@ -22,6 +22,7 @@ function ScatterAnimation() {
     var xAxis;
     var yAxis;
     var svg;
+    var tip;
 
     var allData;
 
@@ -31,6 +32,7 @@ function ScatterAnimation() {
 
             allData = data;
             dataset = filterData();
+
             doIt();
         });
 
@@ -67,11 +69,26 @@ function ScatterAnimation() {
                 .orient("left")
                 .ticks(5);
 
+            /* OMAR TOOLTIP */
+            tip = d3.tip()
+                .attr('class', 'd3-tip')
+                .offset([-10, 0])
+                .html(function(d) {
+
+                    var toolTipText = d['College'] + '<br>' +
+                                      '<span style="color:lightgreen">Median Overall Salary:</span> $' + Math.round(d['Median Overall Salary']) + '<br>' +
+                                      '<span style="color:lightblue">Employment Rate:</span> ' + Math.round(d['Placement Rate']) + '%';
+
+                    return toolTipText;
+                });
+
             // Create SVG element
             svg = d3.select("#scatter_plot_container")  // This is where we put our vis
                 .append("svg")
                 .attr("width", canvas_width)
-                .attr("height", canvas_height)
+                .attr("height", canvas_height);
+
+            svg.call(tip);
 
             var color = d3.scale.category10();
 
@@ -92,7 +109,9 @@ function ScatterAnimation() {
                 .style("fill", function (d) {
                     //return color(d.species);
                     return $index.getCollegeColor(d['College']);
-                });
+                })
+                .on("mouseover", tip.show)
+                .on("mouseout", tip.hide);
 
             // Add to X axis
             svg.append("g")
@@ -120,72 +139,6 @@ function ScatterAnimation() {
                 .style("text-anchor", "end")
                 .text("Salary ($)");
 
-            // On click, update with new data
-            d3.select("#scatter_plot_container")
-                .on("click", function () {
-                    //var numValues = dataset.length;  // Get original dataset's length
-                    //var maxRange = Math.random() * 1000;  // Get max range of new values
-                    //dataset = [];  // Initialize empty array
-                    //for (var i = 0; i < numValues; i++) {
-                    //    var newNumber1 = Math.floor(Math.random() * maxRange);  // Random int for x
-                    //    var newNumber2 = Math.floor(Math.random() * maxRange);  // Random int for y
-                    //    dataset.push([newNumber1, newNumber2]);  // Add new numbers to array
-                    //}
-
-                    dataset = filterData();
-
-                    // Update scale domains
-                    xScale.domain([0, d3.max(dataset, function (d) {
-                        //return d[0];
-                        return d['Placement Rate'];
-                    })]);
-                    yScale.domain([0, d3.max(dataset, function (d) {
-                        //return d[1];
-                        return d['Median Overall Salary'];
-                    })]);
-
-                    // Update circles
-                    svg.selectAll("circle")
-                        .data(dataset)  // Update with new data
-                        .transition()  // Transition from old to new
-                        .duration(2000)  // Length of animation
-                        .each("start", function () {  // Start animation
-                            d3.select(this)  // 'this' means the current element
-                                .attr("fill", "red")  // Change color
-                                .attr("r", 5);  // Change size
-                        })
-                        .delay(function (d, i) {
-                            return i / dataset.length * 500;  // Dynamic delay (i.e. each item delays a little longer)
-                        })
-                        //.ease("linear")  // Transition easing - default 'variable' (i.e. has acceleration), also: 'circle', 'elastic', 'bounce', 'linear'
-                        .attr("cx", function (d) {
-                            //return xScale(d[0]);  // Circle's X
-                            return xScale(d['Placement Rate']);  // Circle's X
-                        })
-                        .attr("cy", function (d) {
-                            //return yScale(d[1]);  // Circle's Y
-                            return yScale(d['Median Overall Salary']);  // Circle's Y
-                        })
-                        .each("end", function () {  // End animation
-                            d3.select(this)  // 'this' means the current element
-                                .transition()
-                                .duration(500)
-                                .attr("fill", "black")  // Change color
-                                .attr("r", 2);  // Change radius
-                        });
-
-                    // Update X Axis
-                    svg.select(".x.axis")
-                        .transition()
-                        .duration(1000)
-                        .call(xAxis);
-
-                    // Update Y Axis
-                    svg.select(".y.axis")
-                        .transition()
-                        .duration(100)
-                        .call(yAxis);
-                });
         }
 
     };
@@ -328,7 +281,9 @@ function ScatterAnimation() {
                     .style("fill", function (d) {
                         //return color(d.species);
                         return $index.getCollegeColor(d['College']);
-                    });
+                    })
+                    .on('mouseover', tip.show)
+                    .on('mouseout', tip.hide);
 
                 // Update X Axis
                 svg.select(".x.axis")
