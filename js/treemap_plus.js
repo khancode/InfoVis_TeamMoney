@@ -4,17 +4,79 @@
 
 $tree_map = new TreeMap();
 // Default tree map 2006 - 2014
-$tree_map.draw();
+//$tree_map.draw();
+
+$tree_map.init();
 
 function TreeMap() {
 
-    this.draw = function() {
+    var _this = this;
+    var collegesData;
+    var bsMajorsData;
+    var msMajorsData;
 
-        var filename = 'json/all_data.json';
+    var collegeSelected = null;
 
-        d3.json(filename, function (error, data) {
+    this.init = function() {
 
-            // hashmap: key (college) => value (medianSalary)
+        getCollegesData();
+
+        function getCollegesData() {
+            var filename = 'json/all_data.json';
+            d3.json(filename, function (error, data) {
+                collegesData = data;
+                getBSMajorsData();
+            });
+        }
+
+        function getBSMajorsData() {
+            var filename = 'json/BS_Major_Data.json';
+            d3.json(filename, function (error, data) {
+                bsMajorsData = data;
+                getMSMajorsData();
+            });
+        }
+
+        function getMSMajorsData() {
+            var filename = 'json/MS_Major_Data.json';
+            d3.json(filename, function (error, data) {
+                msMajorsData = data;
+                _this.drawColleges();
+            });
+        }
+    };
+
+    this.drawColleges = function() {
+
+        var data = collegesData;
+
+        var arr_data = filterData(data);
+
+        //// sample data array
+        //var sample_data = [
+        //    {"value": 50000, "name": "College of Architecture"},
+        //    {"value": 77500, "name": "College of Computing"},
+        //    {"value": 66716, "name": "College of Engineering"},
+        //    {"value": 54000, "name": "Ivan Allen College"},
+        //    {"value": 55000, "name": "Scheller College of Business"},
+        //    {"value": 43250, "name": "College of Sciences"},
+        //    {"value": 63000, "name": "Multidisciplinary"}
+        //];
+
+        // instantiate d3plus
+        var visualization = d3plus.viz()
+            .container("#treemap_plus_container")  // container DIV to hold the visualization
+            .data(arr_data) //sample_data)  // data to use with the visualization
+            .type("tree_map")   // visualization type
+            .id("college") //"name")         // key for which our data is unique on
+            .size("Employment Rate") //"medianSalary") //"value")      // sizing of blocks
+            .timing({"transitions": 1500})
+            .draw();             // finally, draw the visualization!
+
+        setOnRectClickListener();
+
+        function filterData(data) {
+            // hashmap: key (college) => value (Placement Rate)
             var hashMap = {};
 
             for (var i in data)
@@ -49,55 +111,137 @@ function TreeMap() {
                 arr_data.push({"college":college, "Employment Rate":avg});
             }
 
-            //// sample data array
-            //var sample_data = [
-            //    {"value": 50000, "name": "College of Architecture"},
-            //    {"value": 77500, "name": "College of Computing"},
-            //    {"value": 66716, "name": "College of Engineering"},
-            //    {"value": 54000, "name": "Ivan Allen College"},
-            //    {"value": 55000, "name": "Scheller College of Business"},
-            //    {"value": 43250, "name": "College of Sciences"},
-            //    {"value": 63000, "name": "Multidisciplinary"}
-            //];
+            return arr_data;
+        }
+    };
 
-            // instantiate d3plus
-            var visualization = d3plus.viz()
-                .container("#treemap_plus_container")  // container DIV to hold the visualization
-                .data(arr_data) //sample_data)  // data to use with the visualization
-                .type("tree_map")   // visualization type
-                .id("college") //"name")         // key for which our data is unique on
-                .size("Employment Rate") //"medianSalary") //"value")      // sizing of blocks
-                .timing({"transitions": 1500})
-                .draw();             // finally, draw the visualization!
+    this.drawMajors = function() {
 
-            setOnCollegeRectClickListener();
-        });
+        var data;
+        if ($employment_filter.getDegreeLevel() == 'Bachelors')
+            data = bsMajorsData;
+        else if ($employment_filter.getDegreeLevel() == 'Masters')
+            data = msMajorsData;
 
+        var arr_data = filterData(data);
+
+        // instantiate d3plus
+        var visualization = d3plus.viz()
+            .container("#treemap_plus_container")  // container DIV to hold the visualization
+            .data(arr_data)   // data to use with the visualization
+            .type("tree_map")   // visualization type
+            .id("major")    // key for which our data is unique on
+            .size("Employment Rate")    // sizing of blocks
+            .timing({"transitions": 1500})
+            .draw();             // finally, draw the visualization!
+
+        setOnRectClickListener();
+
+        // Replace the tree map sections with easy-to-see color range
+        setTimeout(function() {
+
+            // Use d3's color range for College of Engineering instead
+            if (collegeSelected == "College of Engineering")
+                return;
+
+            var d3plusRects = $('.d3plus_rect');
+
+            var colorScale = $index.getCollegeColorScale(collegeSelected);
+            for (var i = 0; i < d3plusRects.length; i++) {
+                var g = d3plusRects[i];
+                var rect = g.children[0];
+                var text = g.children[1];
+
+                $(rect).attr('fill', colorScale[i]);
+                $(text).attr('fill', '#000000');
+            }
+        }, 500);
+
+        function filterData(data) {
+            // hashmap: key (major) => value (Placement Rate)
+            var hashMap = {};
+
+            for (var i in data)
+            {
+                // OMAR
+                var majorObj = data[i];
+                var major = majorObj['Major'];
+                var majorCollege = $employment_filter.getCollegeFromMajor(major);
+
+                if (majorCollege != collegeSelected)
+                    continue;
+
+                var date = parseDate(majorObj['Date']);
+
+                if (date.year >= $employment_filter.getStartYear() && date.year <= $employment_filter.getEndYear())
+                {
+                    var employmentRate = majorObj['Placement Rate'];
+
+                    if (major in hashMap == false)
+                        hashMap[major] = [employmentRate];
+                    else
+                        hashMap[major].push(employmentRate);
+                }
+
+            }
+
+            var arr_data = [];
+            for (var major in hashMap)
+            {
+                var avg = average(hashMap[major]);
+
+                arr_data.push({"major":major, "Employment Rate":avg});
+            }
+
+            return arr_data;
+        }
     };
 
     this.reDraw = function() { //level, startYear, endYear) {
         d3.select('#treemap_plus_container').select('svg').remove();
-        this.draw();
+
+        if (collegeSelected == null)
+        {
+            this.drawColleges();
+        }
+        else
+        {
+            if ($employment_filter.isExcluded(collegeSelected) == false)
+                this.drawMajors();
+            else
+            {
+                collegeSelected = null;
+                this.drawColleges();
+            }
+        }
     };
 
-    function setOnCollegeRectClickListener()
+    function setOnRectClickListener()
     {
         // Wait for elements to be injected into html
         setTimeout(function() {
             $('#treemap_plus_container svg .d3plus_rect').click(function() {
 
-                var id = $(this).find("text").attr('id');
-                var split = id.split('_');
+                if (collegeSelected == null) {
+                    var id = $(this).find("text").attr('id');
+                    var split = id.split('_');
 
-                var college = '';
-                for (var i = 2; i < split.length - 1; i++) {
-                    college += split[i];
+                    var college = '';
+                    for (var i = 2; i < split.length - 1; i++) {
+                        college += split[i];
 
-                    if (i != split.length - 2)
-                        college += ' ';
+                        if (i != split.length - 2)
+                            college += ' ';
+                    }
+
+                    //console.log("College selected: " + college);
+                    collegeSelected = college;
                 }
+                else
+                    collegeSelected = null;
 
-                console.log("College selected: " + college);
+                _this.reDraw();
+
             });
         }, 1000);
 
@@ -133,4 +277,9 @@ function TreeMap() {
         return avg / numArr.length;
     }
 
+    /* getters */
+    this.getCollegesData = function() { return collegesData; };
+    this.getBSMajorsData = function() { return bsMajorsData; };
+    this.getMSMajorsData = function() { return msMajorsData; };
+    this.getCollegeSelected = function() { return collegeSelected; }
 }

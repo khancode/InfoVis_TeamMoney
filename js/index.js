@@ -34,6 +34,15 @@ function CollegeColors()
         'College of Sciences':'#5F487C'
     };
 
+    var collegeColorScale = {
+        'College of Architecture': ['#fef0d9', '#fdcc8a', '#fc8d59', '#e34a33', '#b30000'],
+        'College of Computing': ['#ffffcc', '#ffeda0', '#fed976', '#feb24c', '#fd8d3c'],
+        'Ivan Allen College': ['#fe9929', '#ec7014', '#cc4c02', '#993404', '#662506'], // maybe incomplete
+        'Scheller College of Business': ['#f7fcf5', '#e5f5e0', '#c7e9c0', '#a1d99b', '#74c476', '#41ab5d', '#238b45', '#006d2c', '#00441b'],
+        'College of Sciences': ['#fcfbfd', '#efedf5', '#dadaeb', '#bcbddc', '#9e9ac8', '#807dba', '#6a51a3', '#54278f', '#3f007d'] // maybe incomplete
+
+    };
+
     this.getCollegeColor = function(college) {
         return collegeColors[college];
     };
@@ -44,7 +53,12 @@ function CollegeColors()
             if (color == collegeColors[key])
                 return key;
         }
-    }
+    };
+
+    this.getCollegeColorScale = function(college) {
+
+        return collegeColorScale[college];
+    };
 }
 
 //var colleges;

@@ -307,8 +307,6 @@ function ScatterAnimation() {
 
             });
 
-            console.log('isEmptyObject(circlesHashmap): ' + $.isEmptyObject(circlesHashMap));
-
             if ($.isEmptyObject(circlesHashMap) == false) {
 
                 svg.selectAll("circle").remove();

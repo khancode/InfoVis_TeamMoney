@@ -312,11 +312,8 @@ function TimeSeries() {
                         .transition()
                         .style("stroke-width", 1.5);
 
-                    //var yo = $(this).next();
                     var college = $(this).next().text();
-                    console.log(college);
 
-                    //$employment_filter.filterCollege(college);
                     $tree_map.reDraw();
                     //$overall_salary_dashboard.reDraw();
 
