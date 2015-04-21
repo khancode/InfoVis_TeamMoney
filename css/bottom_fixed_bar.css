@@ -5,7 +5,8 @@
     bottom:0;
     left:0;
     right:0;
-    height:125px;
+    /*height:125px;*/
+    height: 15%;
     margin: 0 auto;
 }
 
@@ -16,13 +17,15 @@
 }
 
 #degree_radio_button_container {
-    width:250px;
+    /*width:250px;*/
+    width:80%;
     margin: 0 auto;
     margin-top: 7%;
 }
 
 #time_scale_bar {
-    height:100px;
+    /*height:100px;*/
+    height:100%;
     /*width: 750px;*/
     width:40%;
     float:left;
@@ -38,7 +41,8 @@
 
 #time_scale_bar svg {
     padding-left: 25px;
-    height:100px;
+    /*height:100px;*/
+    height:100%;
     width: 750px;
 }
 
@@ -49,12 +53,16 @@
 }
 
 #college_filter_legend {
-    height: 100px;
-    width: 650px;
+    /*height: 100px;*/
+    height: 85%;
+    /*width: 650px;*/
+    width: 90%;
     margin: 0 auto;
 }
 
 #college_filter_legend svg {
-    height:100px;
-    width:650px;
+    /*height:100px;*/
+    height:100%;
+    /*width:650px;*/
+    width:100%;
 }

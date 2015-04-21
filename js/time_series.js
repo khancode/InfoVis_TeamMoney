@@ -32,7 +32,8 @@ function TimeSeries() {
             margin2 = {top: 430, right: 0, bottom: 20, left: 40},
             //width = 1000 - margin.left - margin.right,
             width = $('#time_series_container').width() - margin.left - margin.right,
-            height = 350 - margin.top - margin.bottom,
+            //height = 350 - margin.top - margin.bottom,
+            height = $('#time_series_container').height() - margin.top - margin.bottom,
             height2 = 500 - margin2.top - margin2.bottom;
 
         var parseDate = d3.time.format("%Y%m%d").parse;
@@ -243,7 +244,8 @@ function TimeSeries() {
 
             // OMAR
             var datFeel = d3.select('#college_filter_legend').append('svg')
-                .attr("width", 750)
+                //.attr("width", 750)
+                .attr("width", $('#college_filter_legened').width())
                 .selectAll(".issue")
                 .data(categories) // Select nested data and append to new svg group elements
                 .enter().append("g")
@@ -449,7 +451,7 @@ function TimeSeries() {
                     d0 = data[i - 1],
                     d1 = data[i],
                 /*d0 is the combination of date and rating that is in the data array at the index to the left of the cursor and d1 is the combination of date and close that is in the data array at the index to the right of the cursor. In other words we now have two variables that know the value and date above and below the date that corresponds to the position of the cursor.*/
-                    d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+                    d = d0; //x0 - d0.date > d1.date - x0 ? d1 : d0;
                 /*The final line in this segment declares a new array d that is represents the date and close combination that is closest to the cursor. It is using the magic JavaScript short hand for an if statement that is essentially saying if the distance between the mouse cursor and the date and close combination on the left is greater than the distance between the mouse cursor and the date and close combination on the right then d is an array of the date and close on the right of the cursor (d1). Otherwise d is an array of the date and close on the left of the cursor (d0).*/
 
                 //d is now the data row for the date closest to the mouse position
