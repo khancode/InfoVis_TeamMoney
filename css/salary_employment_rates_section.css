@@ -73,6 +73,19 @@
     left: 0;
 }
 
+    /** Stacked bar chart **/
+#stacked_bar_chart_container {
+    width:100%;
+    height:50%;
+}
+
+#stacked_bar_chart_container .axis path,
+#stacked_bar_chart_container .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
 /*
     for time series and tree map vizs
                                         */
