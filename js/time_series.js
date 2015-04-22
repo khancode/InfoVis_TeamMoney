@@ -505,6 +505,7 @@ function TimeSeries() {
                 //$salary_employment_scatterplot.update();
 
                 $scatter_animation.update(false);
+                $stacked_bar_chart.update();
 
                 $('#time_scale_years_text').text('Years ' + $employment_filter.getStartYear() + ' - ' + $employment_filter.getEndYear());
 
