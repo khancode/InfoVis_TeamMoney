@@ -13,6 +13,15 @@ function EmploymentFilter()
     var collegesExcluded = {}; // treated as a hashset with value ignored: key (college) => value (true)
 
     //FILTERING DATA
+    var collegeInitials = {
+        'College of Architecture':'CoA',
+        'College of Computing':'CoC',
+        'College of Engineering':'CoE',
+        'Ivan Allen College':'IAC',
+        'Scheller College of Business':'SCoB',
+        'College of Sciences':'CoS'
+    };
+
     var bsMajorsCollege =
     {
         "College of Architecture" : ["Architecture", "Building Construction", "Industrial Design"],
@@ -90,6 +99,10 @@ function EmploymentFilter()
                     return college;
             }
         }
+    };
+
+    this.getCollegeInitials = function(college) {
+        return collegeInitials[college];
     };
 
     this.getDegreeLevel = function() { return degreeLevel; };

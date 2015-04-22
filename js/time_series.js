@@ -324,6 +324,7 @@ function TimeSeries() {
                     //$salary_employment_scatterplot.update();
 
                     $scatter_animation.update(true);
+                    $responsive_bar_chart.update();
                 })
 
                 .on("mouseover", function (d) {
@@ -505,7 +506,8 @@ function TimeSeries() {
                 //$salary_employment_scatterplot.update();
 
                 $scatter_animation.update(false);
-                $stacked_bar_chart.update();
+                //$stacked_bar_chart.update();
+                $responsive_bar_chart.update();
 
                 $('#time_scale_years_text').text('Years ' + $employment_filter.getStartYear() + ' - ' + $employment_filter.getEndYear());
 

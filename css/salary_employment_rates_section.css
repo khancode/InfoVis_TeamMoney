@@ -79,12 +79,16 @@
     height:50%;
 }
 
-#stacked_bar_chart_container .axis path,
-#stacked_bar_chart_container .axis line {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
+#stacked_bar_chart_container svg {
+    padding-left: 2%;
 }
+
+/*#stacked_bar_chart_container .axis path,*/
+/*#stacked_bar_chart_container .axis line {*/
+    /*fill: none;*/
+    /*stroke: #000;*/
+    /*shape-rendering: crispEdges;*/
+/*}*/
 
 /*
     for time series and tree map vizs

@@ -13,6 +13,7 @@ $('.degree_radio_group').on('change', function() {
 
     $time_series.update();
     $scatter_animation.update();
+    $responsive_bar_chart.update();
     $tree_map.reDraw();
     //$overall_salary_dashboard.reDraw();
 
