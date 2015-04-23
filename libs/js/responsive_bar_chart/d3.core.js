@@ -15,7 +15,7 @@ function D3Core(options) {
 		        //{ key: "category 1", values: [ { x: "FY2008", y: 10 }, { x: "FY2009", y: 20 }, { x: "FY2010", y: 30 }, { x: "FY2011", y: 5 }, { x: "FY2012", y: 15 } ]},
 		        //{ key: "category 2", values: [ { x: "FY2008", y: 20 }, { x: "FY2009", y: -40 }, { x: "FY2010", y: 20 }, { x: "FY2011", y: 5 }, { x: "FY2012", y: 10 } ]},
 		        //{ key: "category 3", values: [ { x: "FY2008", y: -10 }, { x: "FY2009", y: 10 }, { x: "FY2010", y: 10 }, { x: "FY2011", y: -10 }, { x: "FY2012", y: 10 } ]},
-                { key: "CoA", values: [ { x: "CoA", y: 0 }, { x: "CoC", y: 0 }, { x: "CoE", y: 0 }, { x: "IAC", y: 0 }, { x: "SCoB", y: 0 }, { x: "CoS", y: 0 } ]},
+                { key: "CoA", values: [ { x: "CoA", y: 0 }, { x: "CoC", y: 0 }, { x: "CoE", y: 0 }, { x: "IAC", y: 0 }, { x: "SCoB", y: 0 }, { x: "CoS", y: 0 } ]}
 		      ],
 		resizable: true,
 		showLegend: true,
@@ -37,11 +37,46 @@ function D3Core(options) {
 		xTickFormat: function(d) { return d; },
 		yTickFormat: function(d) { return d; },
 		tooltipText: function(d, element) {
-            console.log('d bruh');
-            console.log(d);
-            console.log('element');
-            console.log(element);
-            return "<p>Tooltip<br />x: "+d.x+"<br />y:"+d.y+"<p>";
+            //console.log('d bruh');
+            //console.log(d);
+            //console.log('element');
+            //console.log(element);
+
+            //console.log('parent of rect:');
+            //console.log($(element).parent());
+            //console.log('parent of g');
+            //console.log($($(element).parent()));
+
+            var category = $(element).parent().attr('original-key');
+            var index = $(element).index();
+            var parent = $(element).parent().parent();
+
+            var children = $('#stacked_bar_chart_container svg .category');
+            var str = '';
+            for (var i = children.length - 1; i >= 0; i--) {
+                var categoryElement = children[i];
+                var categoryChildRect = $(':nth-child('+(index+1)+')', categoryElement);
+
+                var category = $(categoryElement).attr('original-key');
+                var categoryValue = $(categoryChildRect).attr('original-y');
+
+                var color;
+                if (category == 'Tuition') {
+                    categoryValue = categoryValue * -1;
+                    color = 'red';
+                }
+                else if (category == 'Salary')
+                    color = 'green';
+                else if (category == 'Bonus')
+                    color = 'yellow';
+
+                str += '<span style="color:'+color+';font-size:18px;"><b>'+category+':</b></span> <span style="font-size:18px;">$' + categoryValue + '</span><br>';
+            }
+
+            return str;
+            //return '<p>'+category+': $' + d.y + '</p>';
+
+            //return "<p>Tooltip<br />x: "+d.x+"<br />y:"+d.y+"<p>";
         }
 	}	
 	if (typeof options == 'object') this.options = $.extend(defaultOptions, options);
