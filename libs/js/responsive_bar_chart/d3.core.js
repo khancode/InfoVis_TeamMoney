@@ -7,14 +7,15 @@ function inheritPrototype(childObject, parentObject) {
 function D3Core(options) {
 	if (!(this instanceof D3Core)) throw new TypeError("D3Core constructor cannot be called as a function.");
     var defaultOptions = {
-		container: "#chart",
+		container: "#stacked_bar_chart_container", //"#chart",
 		margin: {top: 20, left: 50, bottom: 50, right: 20},
 		spacing: 0.5,
 		dataUrl: null,
 		data: [ 
-		        { key: "category 1", values: [ { x: "FY2008", y: 10 }, { x: "FY2009", y: 20 }, { x: "FY2010", y: 30 }, { x: "FY2011", y: 5 }, { x: "FY2012", y: 15 } ]}, 
-		        { key: "category 2", values: [ { x: "FY2008", y: 20 }, { x: "FY2009", y: -40 }, { x: "FY2010", y: 20 }, { x: "FY2011", y: 5 }, { x: "FY2012", y: 10 } ]}, 
-		        { key: "category 3", values: [ { x: "FY2008", y: -10 }, { x: "FY2009", y: 10 }, { x: "FY2010", y: 10 }, { x: "FY2011", y: -10 }, { x: "FY2012", y: 10 } ]}, 
+		        //{ key: "category 1", values: [ { x: "FY2008", y: 10 }, { x: "FY2009", y: 20 }, { x: "FY2010", y: 30 }, { x: "FY2011", y: 5 }, { x: "FY2012", y: 15 } ]},
+		        //{ key: "category 2", values: [ { x: "FY2008", y: 20 }, { x: "FY2009", y: -40 }, { x: "FY2010", y: 20 }, { x: "FY2011", y: 5 }, { x: "FY2012", y: 10 } ]},
+		        //{ key: "category 3", values: [ { x: "FY2008", y: -10 }, { x: "FY2009", y: 10 }, { x: "FY2010", y: 10 }, { x: "FY2011", y: -10 }, { x: "FY2012", y: 10 } ]},
+                { key: "CoA", values: [ { x: "CoA", y: 0 }, { x: "CoC", y: 0 }, { x: "CoE", y: 0 }, { x: "IAC", y: 0 }, { x: "SCoB", y: 0 }, { x: "CoS", y: 0 } ]},
 		      ],
 		resizable: true,
 		showLegend: true,
@@ -35,7 +36,13 @@ function D3Core(options) {
 		xAxisTranslate: function(base) { return "translate(0,"+base.height+")"; },
 		xTickFormat: function(d) { return d; },
 		yTickFormat: function(d) { return d; },
-		tooltipText: function(d, element) { return "<p>Tooltip<br />x: "+d.x+"<br />y:"+d.y+"<p>"; }
+		tooltipText: function(d, element) {
+            console.log('d bruh');
+            console.log(d);
+            console.log('element');
+            console.log(element);
+            return "<p>Tooltip<br />x: "+d.x+"<br />y:"+d.y+"<p>";
+        }
 	}	
 	if (typeof options == 'object') this.options = $.extend(defaultOptions, options);
 	else this.options = defaultOptions;

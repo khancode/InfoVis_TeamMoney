@@ -7,12 +7,12 @@
 
 /*html { height: 100%; }*/
 /*body { height: 100%; font-size: 0.875rem; font-family: Arial, sans-serif; }*/
-/*#stacked_bar_chart_container {*/
-	/*width: 80%;*/
-	/*height: 80%;*/
+#stacked_bar_chart_container {
+	width: 110%;
+	/*height: 100%;*/
 
-	/*position: relative;*/
-/*}*/
+	position: relative;
+}
 #stacked_bar_chart_container line, #stacked_bar_chart_container path {
 	fill: none;
 	shape-rendering: crispEdges;
@@ -47,14 +47,14 @@
 	transition-timing-function: ease-in-out;
 }
 #stacked_bar_chart_container .rect:hover {
-	cursor: pointer; 
+	cursor: pointer;
 	opacity: 1;
 }
 
 /* TOOLTIP */
 #stacked_bar_chart_container .tooltip {
 	position: absolute;
-	width: 250px;
+	width: 150px;
 	-moz-border-radius: 0.375rem;
 	-webkit-border-radius: 0.375rem;
 	border-radius: 0.375rem;

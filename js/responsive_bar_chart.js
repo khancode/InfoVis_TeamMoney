@@ -49,6 +49,7 @@ function ResponsiveBarChart() {
             container: "#stacked_bar_chart_container"
         });
         stackedbar.show();
+        this.update();
     };
 
     this.update = function() {
@@ -73,10 +74,103 @@ function ResponsiveBarChart() {
 
                 var collegeInitials = $employment_filter.getCollegeInitials(college);
                 if (categories[i] == 'Tuition') {
-                    if ($employment_filter.getDegreeLevel() == 'Bachelors')
-                        category.values.push({x: collegeInitials, y: -1 * collegeObj['in-state-less-than-6hrs']});
-                    else if ($employment_filter.getDegreeLevel() == 'Masters')
-                        category.values.push({x: collegeInitials, y: -1 * collegeObj['in-state-less-than-12hrs']});
+                    if ($employment_filter.getDegreeLevel() == 'Bachelors') {
+                        var inOutStateAvg = -1 * (collegeObj['in-state-more-than-6hrs'] + collegeObj['out-of-state-more-than-6hrs']) / 2;
+                        category.values.push({x: collegeInitials, y:inOutStateAvg});
+                    }
+                    else if ($employment_filter.getDegreeLevel() == 'Masters') {
+                        var inOutStateAvg = -1 * (collegeObj['in-state-more-than-12hrs'] + collegeObj['out-of-state-more-than-12hrs']) / 2;
+                        category.values.push({x: collegeInitials, y: inOutStateAvg});
+                    }
+                }
+                else if (categories[i] == 'Salary') {
+                    category.values.push({x: collegeInitials, y: collegeObj['Median Overall Salary']});
+                }
+                else if (categories[i] == 'Bonus') {
+                    category.values.push({x: collegeInitials, y: collegeObj['Median Overall Bonus']});
+                }
+            }
+
+            newData.push(category);
+        }
+
+        console.log('newData: ');
+        console.log(newData);
+
+        stackedbar.dataset = newData;
+        stackedbar.update();
+
+        //var newData = new Array();
+        //var year = 2007;//getRandomInt(2005, 2014);
+        //var numCategories = 2;//getRandomInt(1, 10);
+        // for (var i=0; i<numCategories; i++) {
+        // 	var category = {};
+        // 	category.key = "category "+i;
+        // 	category.values = new Array();
+        // 	for (var j=year; j<=2015; j++) {
+        // 		category.values.push({ x: j, y: getRandomInt(-50, 50) });
+        // 	// 	category.values.push({ x: j, y: -45 });
+
+        // 	};
+        // 	// category.values.push({x:j, y:-45});
+        // 	// category.values.push({x:2007, y:80});
+
+
+        // 	newData.push(category);
+        // }
+
+        ///* OMAR CODE */
+        //var category = {key: 'Tuition', values: new Array()};
+        //category.values.push({x: 'CoC', y: -15000})
+        //category.values.push({x: 'CoA', y: -15000})
+        //newData.push(category);
+        //
+        //var category = {key: 'Salary', values: new Array()};
+        //category.values.push({x: 'CoC', y: 65000})
+        //category.values.push({x: 'CoA', y: 45000})
+        //newData.push(category);
+        //
+        //var category = {key: 'Bonus', values: new Array()};
+        //category.values.push({x: 'CoC', y: 5000})
+        //category.values.push({x: 'CoA', y: 3500})
+        //newData.push(category);
+        ///* OMAR CODE */
+
+        //stackedbar.dataset = newData;
+        //stackedbar.update();
+//});
+    };
+
+    this.update = function() {
+
+        var data;
+        if ($employment_filter.getDegreeLevel() == 'Bachelors')
+            data = filterBSData();
+        else if ($employment_filter.getDegreeLevel() == 'Masters')
+            data = filterMSData();
+
+        var newData = new Array();
+        var categories = ['Tuition', 'Salary', 'Bonus'];
+
+        for (var i = 0; i < categories.length; i++)
+        {
+            var category = {key: categories[i], values: new Array()};
+            for (var college in data)
+            {
+                var collegeObj = data[college];
+                //console.log('collegeObj->');
+                //console.log(collegeObj);
+
+                var collegeInitials = $employment_filter.getCollegeInitials(college);
+                if (categories[i] == 'Tuition') {
+                    if ($employment_filter.getDegreeLevel() == 'Bachelors') {
+                        var inOutStateAvg = -1 * (collegeObj['in-state-more-than-6hrs'] + collegeObj['out-of-state-more-than-6hrs']) / 2;
+                        category.values.push({x: collegeInitials, y:inOutStateAvg});
+                    }
+                    else if ($employment_filter.getDegreeLevel() == 'Masters') {
+                        var inOutStateAvg = -1 * (collegeObj['in-state-more-than-12hrs'] + collegeObj['out-of-state-more-than-12hrs']) / 2;
+                        category.values.push({x: collegeInitials, y: inOutStateAvg});
+                    }
                 }
                 else if (categories[i] == 'Salary') {
                     category.values.push({x: collegeInitials, y: collegeObj['Median Overall Salary']});
