@@ -1,128 +1,97 @@
-date,college,in-state-less-than-11hrs,in-state-more-than-12hrs,out-of-state-less-than-12hrs,out-of-state-more-than-12hrs
+date,college,in-state-less-than-12hrs,in-state-more-than-12hrs,out-of-state-less-than-12hrs,out-of-state-more-than-12hrs
 Fall 2014,College of Architecture,706,7556,1334,13253
 Fall 2014,College of Computing,557,6672,1281,15367
 Fall 2014,College of Engineering,1131,9039,1403,16824
 Fall 2014,Ivan Allen College,515,6172,1150,13800
 Fall 2014,Scheller College of Business,842,7224,1445,13253
 Fall 2014,College of Sciences,584,6998,1377,16518
-Fall 2014,Default,515,6172,1150,13800
-,,,,,
 Summer 2014,College of Architecture,596,7137,1274,15744
 Summer 2014,College of Computing,472,5662,1139,13665
 Summer 2014,College of Engineering,525,6288,1322,15854
 Summer 2014,Ivan Allen College,472,5662,1139,13665
 Summer 2014,Scheller College of Business,854,6670,1412,12956
 Summer 2014,College of Sciences,712,8529,1297,16488
-Summer 2014,Default,472,5662,1139,13665
-,,,,,
 Spring 2014,College of Architecture,596,7133,1275,15764
 Spring 2014,College of Computing,472,5662,1139,13665
 Spring 2014,College of Engineering,501,6288,1322,15854
 Spring 2014,Ivan Allen College,472,5662,1139,13665
 Spring 2014,Scheller College of Business,785,6670,1412,12956
 Spring 2014,College of Sciences,711,8521,1391,16488
-Spring 2014,Default,472,5662,1139,13665
-,,,,,
 Fall 2013,College of Architecture,596,7133,1275,15764
 Fall 2013,College of Computing,472,5662,1139,13665
 Fall 2013,College of Engineering,501,6288,1322,15854
 Fall 2013,Ivan Allen College,472,5662,1139,13665
 Fall 2013,Scheller College of Business,785,6670,1412,12956
 Fall 2013,College of Sciences,711,8521,1391,16488
-Fall 2013,Default,472,5662,1139,13665
-,,,,,
 Summer 2013,College of Architecture,565,6765,1258,15087
 Summer 2013,College of Computing,441,5292,1120,13430
 Summer 2013,College of Engineering,493,5888,1302,15619
 Summer 2013,Ivan Allen College,441,5292,1120,13430
 Summer 2013,Scheller College of Business,730,6688,1416,17237
 Summer 2013,College of Sciences,646,7749,1372,16454
-Summer 2013,Default,441,5292,1120,13430
-,,,,,
 Spring 2013,College of Architecture,565,6765,1258,15087
 Spring 2013,College of Computing,441,5292,1120,13430
 Spring 2013,College of Engineering,493,5888,1302,15619
 Spring 2013,Ivan Allen College,441,5292,1120,13430
 Spring 2013,Scheller College of Business,730,6688,1416,17237
 Spring 2013,College of Sciences,646,7749,1372,16454
-Spring 2013,Default,441,5292,1120,13430
-,,,,,
 Fall 2012,College of Architecture,565,6765,1258,15087
 Fall 2012,College of Computing,441,5292,1120,13430
 Fall 2012,College of Engineering,493,5888,1302,15619
 Fall 2012,Ivan Allen College,441,5292,1120,13430
 Fall 2012,Scheller College of Business,730,6688,1416,17237
 Fall 2012,College of Sciences,646,7749,1372,16454
-Fall 2012,Default,441,5292,1120,13430
-,,,,,
 Summer 2012,College of Architecture,538,5551,1368,16410
 Summer 2012,College of Computing,417,4993,1120,13430
 Summer 2012,College of Engineering,468,5819,1302,15619
 Summer 2012,Ivan Allen College,417,4993,1120,13430
 Summer 2012,Scheller College of Business,706,6444,1416,13894
 Summer 2012,College of Sciences,469,5619,1302,15619
-Summer 2012,Default,417,4993,1120,13430
-,,,,,
 Spring 2012,College of Architecture,538,5551,1368,16410
 Spring 2012,College of Computing,417,4993,1120,13430
 Spring 2012,College of Engineering,468,5819,1302,15619
 Spring 2012,Ivan Allen College,417,4993,1120,13430
 Spring 2012,Scheller College of Business,706,6444,1416,13894
 Spring 2012,College of Sciences,469,5619,1302,15619
-Spring 2012,Default,417,4993,1120,13430
-,,,,,
 Fall 2011,College of Architecture,538,5551,1368,16410
 Fall 2011,College of Computing,417,4993,1120,13430
 Fall 2011,College of Engineering,468,5819,1302,15619
 Fall 2011,Ivan Allen College,417,4993,1120,13430
 Fall 2011,Scheller College of Business,706,6444,1416,13894
 Fall 2011,College of Sciences,469,5619,1302,15619
-Fall 2011,Default,417,4993,1120,13430
-,,,,,
 Summer 2011,College of Architecture,490,4968,1345,16129
 Summer 2011,College of Computing,360,4318,1092,13102
 Summer 2011,College of Engineering,413,4944,1275,15291
 Summer 2011,Ivan Allen College,360,4318,1092,13102
 Summer 2011,Scheller College of Business,603,5727,1376,14005
 Summer 2011,College of Sciences,413,4944,1275,15291
-Summer 2011,Default,360,4318,1092,13102
-,,,,,
 Spring 2011,College of Architecture,490,4968,1345,16129
 Spring 2011,College of Computing,360,4318,1092,13102
 Spring 2011,College of Engineering,413,4944,1275,15291
 Spring 2011,Ivan Allen College,360,4318,1092,13102
 Spring 2011,Scheller College of Business,603,5727,1376,14005
 Spring 2011,College of Sciences,413,4944,1275,15291
-Spring 2011,Default,360,4318,1092,13102
-,,,,,
 Fall 2010,College of Architecture,490,4968,1345,16129
 Fall 2010,College of Computing,360,4318,1092,13102
 Fall 2010,College of Engineering,413,4944,1275,15291
 Fall 2010,Ivan Allen College,360,4318,1092,13102
 Fall 2010,Scheller College of Business,603,5727,1376,14005
 Fall 2010,College of Sciences,413,4944,1275,15291
-Fall 2010,Default,360,4318,1092,13102
-,,,,,
 Summer 2010,College of Architecture,430,5153,1351,16204
 Summer 2010,College of Computing,287,3442,1040,12478
 Summer 2010,College of Engineering,287,3442,1040,12478
 Summer 2010,Ivan Allen College,287,3442,1040,12478
 Summer 2010,Scheller College of Business,569,4636,1299,15583
 Summer 2010,College of Sciences,330,3956,1189,14266
-Summer 2010,Default,287,3442,1040,12478
-,,,,,
 Spring 2010,College of Architecture,430,5213,1351,16204
 Spring 2010,College of Computing,287,3442,1040,12478
 Spring 2010,College of Engineering,287,3442,1040,12478
 Spring 2010,Ivan Allen College,287,3442,1040,12478
 Spring 2010,Scheller College of Business,455,3854,1299,12726
 Spring 2010,College of Sciences,330,3956,1189,14266
-Spring 2010,Default,287,3442,1040,12478
-,,,,,
 Fall 2009,College of Architecture,430,5213,1351,16204
 Fall 2009,College of Computing,287,3442,1040,12478
 Fall 2009,College of Engineering,287,3442,1040,12478
 Fall 2009,Ivan Allen College,287,3442,1040,12478
 Fall 2009,Scheller College of Business,455,3854,1299,12726
 Fall 2009,College of Sciences,330,3956,1189,14266
-Fall 2009,Default,287,3442,1040,12478
