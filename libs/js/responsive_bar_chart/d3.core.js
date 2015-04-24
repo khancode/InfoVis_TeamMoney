@@ -25,7 +25,7 @@ function D3Core(options) {
 		displayTable: true,
 		yFormat: function(d) { return d; },
 		//colors: ['rgb(166,206,227)','rgb(31,120,180)','rgb(178,223,138)','rgb(51,160,44)','rgb(251,154,153)','rgb(227,26,28)','rgb(253,191,111)','rgb(255,127,0)','rgb(202,178,214)','rgb(106,61,154)','rgb(255,255,153)','rgb(177,89,40)'],
-		colors: ["red", "green", "yellow"],
+		colors: ["#FF7575", "#27DE55", "yellow"],
    		xTickSize: function(base) { return 10; },
 		yTickSize: function(base) { return 10; },
 		xTicks: 5,
@@ -64,14 +64,14 @@ function D3Core(options) {
                 var color;
                 if (category == 'Tuition') {
                     categoryValue = categoryValue * -1;
-                    color = 'red';
+                    color = '#FF7575';
                 }
                 else if (category == 'Salary')
-                    color = 'green';
+                    color = '#27DE55';
                 else if (category == 'Bonus')
                     color = 'yellow';
 
-                str += '<span style="color:'+color+';font-size:18px;"><b>'+category+':</b></span> <span style="font-size:18px;">$' + categoryValue + '</span><br>';
+                str += '<span style="color:'+color+';font-size:18px;"><b>'+category+':</b></span> <span style="font-size:16px;">$' + categoryValue + '</span><br>';
             }
 
             return str;
@@ -101,7 +101,7 @@ D3Core.prototype = {
 	    }
 	    
 	    if (this.options.showLegend) {
-	    	base.legendDiv = d3.select(base.options.container).append("div").attr("class", "legend").append("ul");
+	    	//base.legendDiv = d3.select(base.options.container).append("div").attr("class", "legend").append("ul");
 	    }
 	    
 	    this.svg = d3.select(this.options.container)
@@ -116,9 +116,23 @@ D3Core.prototype = {
 			.attr("width", this.width)
 			.attr("height", this.height)
 			.attr("transform", "translate(0,0)");
+
+        // Add to Y axis
+        this.svg.append("g")
+            //.attr("class", "y axis")
+            //.attr("transform", "translate(" + padding + ",0)")
+            //.call(yAxis)
+            .append("text")
+            .attr("class", "label")
+            .attr("transform", "rotate(-90)")
+            .attr("x", '0%')
+            .attr("y", 6)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            .text("Money ($)");
 	    
 	    if (this.options.displayTable) {
-	    	$(this.options.container).append("<div class='table' style='display: none;'><table /></div>");
+	    	//$(this.options.container).append("<div class='table' style='display: none;'><table /></div>");
 	    	//$(this.options.container).append("<a href='#' class='showTableIcon'>Display in Table</a>");
 	    	this.table = $(this.options.container+" .table table");
 	    	this.table.parent().css({
@@ -461,7 +475,7 @@ D3Core.prototype = {
 	},
 	
 	prepareLegend: function() {
-    	this.legend = this.legendDiv.selectAll('li').data(this.color.domain());
+    	//this.legend = this.legendDiv.selectAll('li').data(this.color.domain());
 	},
 	
 	legendEnter: function() {
@@ -475,18 +489,18 @@ D3Core.prototype = {
 	},
 	
 	legendUpdate: function() {
-		var base = this;
-	   	base.legend
-	  	    .style('border-color', function(d, i) { return base.color(d); })
-	  	    .text(function(d) { return d; });
+		//var base = this;
+	   	//base.legend
+	  	//    .style('border-color', function(d, i) { return base.color(d); })
+	  	//    .text(function(d) { return d; });
 	},
 	
 	legendExit: function() {
-    	this.legend.exit()
-    		.style("opacity", 1)
-    		.transition().duration(500).ease("cubic-in-out")
-      	    .style("opacity", 0)
-    		.remove();
+    	//this.legend.exit()
+    	//	.style("opacity", 1)
+    	//	.transition().duration(500).ease("cubic-in-out")
+      	//    .style("opacity", 0)
+    	//	.remove();
 	}
 	
 };
