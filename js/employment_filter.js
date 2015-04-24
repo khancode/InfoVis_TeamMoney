@@ -8,8 +8,8 @@ function EmploymentFilter()
 {
     // private members
     var degreeLevel = 'Bachelors'; // default
-    var startYear = 2006; // default
-    var endYear = 2014; // default
+    var startYear = 2011; // default
+    var endYear = 2015; // default
     var collegesExcluded = {}; // treated as a hashset with value ignored: key (college) => value (true)
 
     //FILTERING DATA
