@@ -470,7 +470,7 @@ console.log(dataArray);
 
     	//go through list and add to aveage
     	for (var data in majorDataArray) {
-    		if(majorDataArray[data]["Offer Rate"] != -1) offerRateAverage += majorDataArray[data]["Offer Rate"];	
+    		if(majorDataArray[data]["Offer Rate"] != -1) offerRateAverage += majorDataArray[data]["Offer Rate"];
     		if(majorDataArray[data]["Placement Rate"] != -1) placementRateAverage += majorDataArray[data]["Placement Rate"];
     		if(majorDataArray[data].Median != -1) medianAverage += majorDataArray[data].Median;
     		if(majorDataArray[data].High != -1) highAverage += majorDataArray[data].High;
