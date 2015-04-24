@@ -43,7 +43,8 @@
     padding-left: 25px;
     /*height:100px;*/
     height:100%;
-    width: 750px;
+    width: 100%;
+    padding-left:10%;
 }
 
 #college_filter {
