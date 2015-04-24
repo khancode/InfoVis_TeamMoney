@@ -125,7 +125,7 @@ D3Core.prototype = {
 	    		width: $(this.options.container+" svg").width(),
 	    		height: $(this.options.container+" svg").height()
 	    	});
-	    	
+
 	    	$(this.options.container+" .showTableIcon").on("click", function(e) {
 	    		e.preventDefault();
 	    		if ($(this).hasClass("selected")) {
@@ -148,12 +148,12 @@ D3Core.prototype = {
     	base.start();
     	var timeOut = null;
     	if (this.options.resizable) {
-	    	$(window).on('resize', function(){	
-	    	    if (timeOut != null) clearTimeout(timeOut);
-	    	    timeOut = setTimeout(function(){
-	    	    	base.resize()
-	    	    }, 500);
-	    	});
+	    	//$(window).on('resize', function(){
+	    	//    if (timeOut != null) clearTimeout(timeOut);
+	    	//    timeOut = setTimeout(function(){
+	    	//    	base.resize()
+	    	//    }, 500);
+	    	//});
     	}
     },
     
@@ -465,13 +465,13 @@ D3Core.prototype = {
 	},
 	
 	legendEnter: function() {
-		var base = this;
-    	base.legend.enter().append('li')
-    		.style("opacity", 0)
-      	    .style('border-color', function(d) { return base.color(d); })
-      	    .text(function(d) { return d; }) 		
-    		.transition().duration(500).ease("cubic-in-out")
-      	    .style("opacity", 1)
+        //var base = this;
+    	//base.legend.enter().append('li')
+    	//	.style("opacity", 0)
+      	//    .style('border-color', function(d) { return base.color(d); })
+      	//    .text(function(d) { return d; })
+    	//	.transition().duration(500).ease("cubic-in-out")
+      	//    .style("opacity", 1)
 	},
 	
 	legendUpdate: function() {

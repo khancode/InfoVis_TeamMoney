@@ -75,7 +75,8 @@ function ResponsiveBarChart() {
                 var collegeInitials = $employment_filter.getCollegeInitials(college);
                 if (categories[i] == 'Tuition') {
                     if ($employment_filter.getDegreeLevel() == 'Bachelors') {
-                        var inOutStateAvg = -1 * (collegeObj['in-state-more-than-6hrs'] + collegeObj['out-of-state-more-than-6hrs']) / 2;
+                        //var inOutStateAvg = -1 * (collegeObj['in-state-more-than-6hrs'] + collegeObj['out-of-state-more-than-6hrs']) / 2;
+                        var inOutStateAvg = -1 * collegeObj['in-state-more-than-6hrs'] //+ collegeObj['out-of-state-more-than-6hrs']) / 2;
                         category.values.push({x: collegeInitials, y:inOutStateAvg});
                     }
                     else if ($employment_filter.getDegreeLevel() == 'Masters') {
@@ -421,10 +422,10 @@ function ResponsiveBarChart() {
         // Average it now
         for (var college in hashMap)
         {
-            hashMap[college]['in_state_less_than_6hrs'] = average(hashMap[college]['in_state_less_than_6hrs']);
-            hashMap[college]['in_state_more_than_6hrs'] = average(hashMap[college]['in_state_more_than_6hrs']);
-            hashMap[college]['out_of_state_less_than_6hrs'] = average(hashMap[college]['out_of_state_less_than_6hrs']);
-            hashMap[college]['out_of_state_more_than_6hrs'] = average(hashMap[college]['out_of_state_more_than_6hrs']);
+            hashMap[college]['in_state_less_than_6hrs'] = sum(hashMap[college]['in_state_less_than_6hrs']);
+            hashMap[college]['in_state_more_than_6hrs'] = sum(hashMap[college]['in_state_more_than_6hrs']);
+            hashMap[college]['out_of_state_less_than_6hrs'] = sum(hashMap[college]['out_of_state_less_than_6hrs']);
+            hashMap[college]['out_of_state_more_than_6hrs'] = sum(hashMap[college]['out_of_state_more_than_6hrs']);
         }
 
         //console.log('averaged buddy');
@@ -568,6 +569,15 @@ function ResponsiveBarChart() {
             avg += numArr[i];
 
         return Math.round(avg / numArr.length);
+    }
+
+    function sum(numArr)
+    {
+        var sum = 0;
+        for (var i in numArr)
+            sum += numArr[i];
+
+        return Math.round(sum);
     }
 
     /* accessors */

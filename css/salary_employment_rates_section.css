@@ -85,9 +85,43 @@
 }
 
     /** Stacked bar chart **/
+#in-out-state_tuition_radio_button_container {
+    width:100%;
+    height:5%;
+    display:inline-block;
+    font-size:100%;
+}
+
+#in-out-state_tuition_radio_button_container .radio {
+    width:50%;
+    height:100%;
+    margin-top:0;
+    margin-bottom: 0;
+    display: inline-block;
+    float:left;
+}
+
+/* legend */
+#in-out-state_tuition_legend {
+    width:50%;
+    height:100%;
+    float:left;
+}
+
+#in-out-state_tuition_legend li {
+    display:inline;
+    list-style-type:none;
+    border-left-width: 15px;
+    border-left-style: solid;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    float:left;
+}
+
+
 #stacked_bar_chart_container {
     width:100%;
-    height:45%; /* 50% - 45% = 5% goes towards #section_title_header */
+    height:40%; /* 50% - 40% = 10%, 5% goes towards #section_title_header, other 5% goes towards #in-out-state_tuition_radio_button_container */
 
     position: relative;
 
