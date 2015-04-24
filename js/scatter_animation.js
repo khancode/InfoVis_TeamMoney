@@ -76,8 +76,9 @@ function ScatterAnimation() {
                 .html(function(d) {
 
                     var toolTipText = d['College'] + '<br>' +
-                                      '<span style="color:lightgreen">Median Overall Salary:</span> $' + Math.round(d['Median Overall Salary']) + '<br>' +
-                                      '<span style="color:lightblue">Employment Rate:</span> ' + Math.round(d['Placement Rate']) + '%';
+                                      '<span style="color:lightblue">Median Overall Salary:</span> $' + Math.round(d['Median Overall Salary']) + '<br>' +
+                                      '<span style="color:lightblue">Employment Rate:</span> ' + Math.round(d['Placement Rate']) + '%<br>' +
+                                      '<span style="color:lightblue">Offer Rate:</span> ' + Math.round(d['Offer Rate']) + '%';
 
                     return toolTipText;
                 });
@@ -353,13 +354,14 @@ function ScatterAnimation() {
             var degreeLevel = d['Level'];
             var medianSalary = d['Median Overall Salary'];
             var employmentRate = d['Placement Rate'];
+            var offerRate = d['Offer Rate'];
 
             if (date.year >= $employment_filter.getStartYear() && date.year <= $employment_filter.getEndYear()) {
                 if (degreeLevel == $employment_filter.getDegreeLevel()) {
                     if (college in hashMap == false)
-                        hashMap[college] = [[employmentRate, medianSalary]]; //[medianSalary];
+                        hashMap[college] = [[employmentRate, medianSalary, offerRate]]; //[medianSalary];
                     else
-                        hashMap[college].push([employmentRate, medianSalary]); //medianSalary);
+                        hashMap[college].push([employmentRate, medianSalary, offerRate]); //medianSalary);
                 }
             }
         });
@@ -368,12 +370,14 @@ function ScatterAnimation() {
         for (var college in hashMap) {
             var employmentRateAvg = average(hashMap[college], 0);
             var medianSalaryAvg = average(hashMap[college], 1);
+            var offerRateAvg = average(hashMap[college], 2);
 
             //arr_data.push({"college":college, "medianSalary":avg});
             arr_data.push({
                 "College": college,
                 "Placement Rate": employmentRateAvg,
-                "Median Overall Salary": medianSalaryAvg
+                "Median Overall Salary": medianSalaryAvg,
+                "Offer Rate": offerRateAvg
             });
         }
 
