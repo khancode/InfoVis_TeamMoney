@@ -24,6 +24,27 @@ $('.degree_radio_group').on('change', function() {
     //$employment_filter.clear(degreeLevel);
 });
 
+$('.in-out-state_tuition_radio_group').on('change', function() {
+
+    var inOutStateTuitionType = $(this).val();
+
+    console.log('inOutStateTuitionType: ' + inOutStateTuitionType);
+
+    //Omar
+    $employment_filter.setTuitionType(inOutStateTuitionType);
+
+    //$time_series.update();
+    //$scatter_animation.update();
+    $responsive_bar_chart.update();
+    //$tree_map.reDraw();
+    ////$overall_salary_dashboard.reDraw();
+    //
+    //$salaries_stacked_bar_chart.reDraw();
+
+    // TODO the years and filter shouldn't be reset, need to fix this update.
+    //$('#treemap_years_text').text('Years 2006 - 2014');
+    //$employment_filter.clear(degreeLevel);
+});
 
 $index = new CollegeColors();
 

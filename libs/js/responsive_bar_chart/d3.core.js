@@ -119,7 +119,7 @@ D3Core.prototype = {
 	    
 	    if (this.options.displayTable) {
 	    	$(this.options.container).append("<div class='table' style='display: none;'><table /></div>");
-	    	$(this.options.container).append("<a href='#' class='showTableIcon'>Display in Table</a>");
+	    	//$(this.options.container).append("<a href='#' class='showTableIcon'>Display in Table</a>");
 	    	this.table = $(this.options.container+" .table table");
 	    	this.table.parent().css({
 	    		width: $(this.options.container+" svg").width(),

@@ -10,6 +10,7 @@ function EmploymentFilter()
     var degreeLevel = 'Bachelors'; // default
     var startYear = 2011; // default
     var endYear = 2015; // default
+    var tuitionType = 'In-State'; // ('In-State' or 'Out-Of-State') only used by responsive_bar_chart
     var collegesExcluded = {}; // treated as a hashset with value ignored: key (college) => value (true)
 
     //FILTERING DATA
@@ -81,6 +82,10 @@ function EmploymentFilter()
         endYear = endYearInput;
     };
 
+    this.setTuitionType = function(tuitionTypeInput) {
+        tuitionType = tuitionTypeInput;
+    };
+
     this.getCollegeFromMajor = function (major) {
 
         var mapping;
@@ -108,4 +113,5 @@ function EmploymentFilter()
     this.getDegreeLevel = function() { return degreeLevel; };
     this.getStartYear = function() { return startYear; };
     this.getEndYear = function() { return endYear; };
+    this.getTuitionType = function() { return tuitionType; }
 }
