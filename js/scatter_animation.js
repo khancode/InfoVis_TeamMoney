@@ -336,6 +336,12 @@ function ScatterAnimation() {
 
     };
 
+    this.reset = function() {
+
+        d3.select('#scatter_plot_container').select('svg').remove();
+        this.draw();
+    };
+
     /**
      * Helper functions
      * @returns {Array}

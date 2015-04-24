@@ -8,12 +8,14 @@ $('#reset_button').on('click', function() {
 
     $employment_filter.reset();
 
-    $scatter_animation.update();
+    $scatter_animation.reset();
     $time_series.reDraw();
     $responsive_bar_chart.update();
     $tree_map.reDraw();
     $salaries_stacked_bar_chart.reDraw();
 
+    $('#bsDegreeRadio').prop('checked', true);
+    $('#inStateTuitionRadio').prop('checked', true);
     $('#time_scale_years_text').html('Years: 2011 - 2015');
 });
 
