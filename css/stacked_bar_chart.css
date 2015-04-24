@@ -1,0 +1,66 @@
+#stacked_container {
+    /*margin: 0 auto;*/
+    margin-left: 12.5%;
+    margin-right:12.5%;
+    width: 75%;
+    display: inline-block;
+    position: relative;
+    padding-top: 0;
+    /*float: left;*/
+}
+
+#stacked_salaries_one .axis path,
+#stacked_salaries_one .axis line {
+    fill: none;
+    shape-rendering: crispEdges;
+}
+
+#stacked_salaries_two .axis path,
+#stacked_salaries_two .axis line {
+    fill: none;
+    shape-rendering: crispEdges;
+}
+#stacked_salaries_three .axis path,
+#stacked_salaries_three .axis line {
+    fill: none;
+    shape-rendering: crispEdges;
+}
+
+#stacked_salaries_four .axis path,
+#stacked_salaries_four .axis line {
+    fill: none;
+    shape-rendering: crispEdges;
+}#stacked_salaries_five .axis path,
+ #stacked_salaries_five .axis line {
+     fill: none;
+     shape-rendering: crispEdges;
+ }
+
+#stacked_salaries_six .axis path,
+#stacked_salaries_six .axis line {
+    fill: none;
+    shape-rendering: crispEdges;
+}
+
+
+#stacked_salaries_one .y.axis path {
+    display: none;
+}
+
+#stacked_salaries_two .y.axis path {
+    display: none;
+}
+#stacked_salaries_three .y.axis path {
+    display: none;
+}
+
+#stacked_salaries_four .y.axis path {
+    display: none;
+}
+#stacked_salaries_five .y.axis path {
+    display: none;
+}
+
+#stacked_salaries_six .y.axis path {
+    display: none;
+}

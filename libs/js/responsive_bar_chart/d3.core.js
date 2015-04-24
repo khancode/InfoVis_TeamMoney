@@ -15,7 +15,7 @@ function D3Core(options) {
 		        //{ key: "category 1", values: [ { x: "FY2008", y: 10 }, { x: "FY2009", y: 20 }, { x: "FY2010", y: 30 }, { x: "FY2011", y: 5 }, { x: "FY2012", y: 15 } ]},
 		        //{ key: "category 2", values: [ { x: "FY2008", y: 20 }, { x: "FY2009", y: -40 }, { x: "FY2010", y: 20 }, { x: "FY2011", y: 5 }, { x: "FY2012", y: 10 } ]},
 		        //{ key: "category 3", values: [ { x: "FY2008", y: -10 }, { x: "FY2009", y: 10 }, { x: "FY2010", y: 10 }, { x: "FY2011", y: -10 }, { x: "FY2012", y: 10 } ]},
-                { key: "CoA", values: [ { x: "CoA", y: 0 }, { x: "CoC", y: 0 }, { x: "CoE", y: 0 }, { x: "IAC", y: 0 }, { x: "SCoB", y: 0 }, { x: "CoS", y: 0 } ]}
+                { key: "CoA", values: [ { x: "CoA", y: 0 }, { x: "CoC", y: 0 }, { x: "CoE", y: 0 }, { x: "IAC", y: 0 }, { x: "CoB", y: 0 }, { x: "CoS", y: 0 } ]}
 		      ],
 		resizable: true,
 		showLegend: true,
@@ -47,6 +47,7 @@ function D3Core(options) {
             //console.log('parent of g');
             //console.log($($(element).parent()));
 
+            // OMAR
             var category = $(element).parent().attr('original-key');
             var index = $(element).index();
             var parent = $(element).parent().parent();

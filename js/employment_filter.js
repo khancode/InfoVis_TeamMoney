@@ -18,7 +18,7 @@ function EmploymentFilter()
         'College of Computing':'CoC',
         'College of Engineering':'CoE',
         'Ivan Allen College':'IAC',
-        'Scheller College of Business':'SCoB',
+        'Scheller College of Business':'CoB',
         'College of Sciences':'CoS'
     };
 

@@ -27,6 +27,8 @@
 
     <link href="css/d3.stackedbar.css" rel="stylesheet">
 
+    <link href="css/stacked_bar_chart.css" rel="stylesheet">
+
     <!-- jQuery -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
 
@@ -185,13 +187,18 @@
 </section>
 
 
-<div id="salary_container" class="jumbotron">
+<div id="stacked_container" class="jumbotron">
 
-    <h2 class="section-heading">Employment Salaries</h2>
+    <h2 class="section-heading">Major's Starting Salary</h2>
     <hr class="dark">
 
-    <div id="dashboard_container"></div>
-
+    <table width="2000px">
+        <tr>
+            <div id="stacked_one">
+                <div id="stacked_salaries_one"></div>
+            </div>
+        </tr>
+    </table>
 </div>
 
 <!--<div id="footer">-->
@@ -239,7 +246,7 @@
 <script src="js/scatter_animation.js"></script>
 
 <script src="js/responsive_bar_chart.js"></script>
-
+<script src="js/stacked_bar_chart.js"></script>
 
 <!-- creative -->
 <!-- jQuery -->
