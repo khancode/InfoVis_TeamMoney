@@ -119,6 +119,8 @@
                 </label>
             </div>
         </div>
+        <!--<div id="reset_button" class="btn btn-default btn-xl">Tuition vs. Salary!</div>-->
+        <button id="reset_button" type="button" class="btn btn-primary">Reset</button>
     </div>
     <div id="college_filter">
         <div id="college_filter_legend"></div>
@@ -160,25 +162,26 @@
 <section id="salary_employment_rates_section" class="jumbotron">
 
     <div id="salary_employment_container">
-        <h3 class="section_title_header" class="section-heading">Salary vs. Employment</h3>
+        <h2 class="section_title_header" class="section-heading">Salary vs. Employment</h2>
         <!--<hr class="dark">-->
         <div id="scatter_plot_container"></div>
 
         <h3 class="section_title_header" class="section-heading">Salary vs. Tuition</h3>
         <div id="in-out-state_tuition_radio_button_container">
             <div class="radio" style="float:left;">
+                <span style="padding-right:1%;text-decoration:underline;">Tuition:</span>
                 <label>
                     <input type="radio" name="tuitionTypeRadios" class="in-out-state_tuition_radio_group" id="inStateTuitionRadio" value="In-State" checked>
                     In-State
                 </label>
                 <label>
                     <input type="radio" name="tuitionTypeRadios" class="in-out-state_tuition_radio_group" id="outStateTuitionRadio" value="Out-Of-State">
-                    Out-Of-State Tuition
+                    Out-Of-State
                 </label>
             </div>
             <div id="in-out-state_tuition_legend">
-                <ul><li style="opacity: 1; border-color: #FF7575;" value="Tuition">Tuition</li>
-                    <li style="opacity: 1; border-color: #27DE55;" value="Salary">Salary</li><li style="opacity: 1; border-color: yellow;" value="Bonus">Bonus</li></ul>
+                <span style="float:left;padding-right:1%;text-decoration:underline;">Median Overall:</span>
+                <ul><li style="opacity: 1; border-color: #FF7575;" value="Tuition">Tuition</li><li style="opacity: 1; border-color: #27DE55;" value="Salary">Salary</li><li style="opacity: 1; border-color: yellow;" value="Bonus">Bonus</li></ul>
             </div>
         </div>
         <div id="stacked_bar_chart_container"></div>
@@ -205,7 +208,7 @@
 
 <div id="stacked_container" class="jumbotron">
 
-    <h3 class="section-heading">Major's Starting Salary</h3>
+    <h3 class="section-heading page-scroll" style="margin-top:1.5%;">Major's Starting Salary</h3>
     <hr class="dark">
 
     <table width="2000px">

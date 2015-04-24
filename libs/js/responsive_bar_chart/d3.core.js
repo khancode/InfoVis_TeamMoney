@@ -71,7 +71,7 @@ function D3Core(options) {
                 else if (category == 'Bonus')
                     color = 'yellow';
 
-                str += '<span style="color:'+color+';font-size:18px;"><b>'+category+':</b></span> <span style="font-size:16px;">$' + categoryValue + '</span><br>';
+                str += '<span style="color:'+color+';font-size:15px;"><b>'+category+':</b></span> <span style="font-size:15px;">$' + categoryValue + '</span><br>';
             }
 
             return str;

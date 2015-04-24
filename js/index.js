@@ -4,6 +4,19 @@
 
 console.log("inside index.js");
 
+$('#reset_button').on('click', function() {
+
+    $employment_filter.reset();
+
+    $scatter_animation.update();
+    $time_series.reDraw();
+    $responsive_bar_chart.update();
+    $tree_map.reDraw();
+    $salaries_stacked_bar_chart.reDraw();
+
+    $('#time_scale_years_text').html('Years: 2011 - 2015');
+});
+
 /* Radio buttons */
 $('.degree_radio_group').on('change', function() {
 

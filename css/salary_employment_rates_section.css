@@ -3,7 +3,7 @@
     /*height: 700px;*/
     height: 85%;
     margin: 0 auto;
-    margin-top: 6%;
+    margin-top: 5%;
 
     /*padding-top: 1%;*/
 }
@@ -16,6 +16,8 @@
     text-decoration: underline;
     margin: 0;
     display:inline-block;
+    padding-top:4%;
+    margin-bottom:4%;
 }
 
 /*
@@ -91,6 +93,7 @@
     height:5%;
     display:inline-block;
     font-size:100%;
+    font-family: "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
 }
 
 #in-out-state_tuition_radio_button_container .radio {

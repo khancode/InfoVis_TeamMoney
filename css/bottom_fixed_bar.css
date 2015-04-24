@@ -11,9 +11,11 @@
 }
 
 #degree_filter {
-    height:100%;
+    height:75%;
     width:20%;
     float:left;
+    font-family: "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial";
+    font-size:100%;
 }
 
 #degree_radio_button_container {
@@ -21,6 +23,15 @@
     width:80%;
     margin: 0 auto;
     margin-top: 7%;
+}
+
+#reset_button {
+    height:30%;
+    width:30%;
+    margin-top:15%;
+    margin-left:5%;
+    /*font-size:100%;*/
+    background-color:#269abc;
 }
 
 #time_scale_bar {

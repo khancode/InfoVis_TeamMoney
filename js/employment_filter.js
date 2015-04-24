@@ -110,6 +110,16 @@ function EmploymentFilter()
         return collegeInitials[college];
     };
 
+    this.reset = function() {
+
+        // private members
+        degreeLevel = 'Bachelors'; // default
+        startYear = 2011; // default
+        endYear = 2015; // default
+        tuitionType = 'In-State'; // ('In-State' or 'Out-Of-State') only used by responsive_bar_chart
+        collegesExcluded = {}; // treated as a hashset with value ignored: key (college) => value (true)
+    };
+
     this.getDegreeLevel = function() { return degreeLevel; };
     this.getStartYear = function() { return startYear; };
     this.getEndYear = function() { return endYear; };

@@ -184,19 +184,23 @@ function ResponsiveBarChart() {
 
             if (date.year >= $employment_filter.getStartYear() && date.year <= $employment_filter.getEndYear())
             {
-                if (college in hashMap == false) {
-                    hashMap[college] = {
-                        in_state_less_than_12hrs: [in_state_less_than_12hrs],
-                        in_state_more_than_12hrs: [in_state_more_than_12hrs],
-                        out_of_state_less_than_12hrs: [out_of_state_less_than_12hrs],
-                        out_of_state_more_than_12hrs: [out_of_state_more_than_12hrs]
-                    };
-                }
-                else {
-                    hashMap[college]['in_state_less_than_12hrs'].push(in_state_less_than_12hrs);
-                    hashMap[college]['in_state_more_than_12hrs'].push(in_state_more_than_12hrs);
-                    hashMap[college]['out_of_state_less_than_12hrs'].push(out_of_state_less_than_12hrs);
-                    hashMap[college]['out_of_state_more_than_12hrs'].push(out_of_state_more_than_12hrs);
+                // Do not include summer tuition
+                if (date.season != 'Summer') {
+
+                    if (college in hashMap == false) {
+                        hashMap[college] = {
+                            in_state_less_than_12hrs: [in_state_less_than_12hrs],
+                            in_state_more_than_12hrs: [in_state_more_than_12hrs],
+                            out_of_state_less_than_12hrs: [out_of_state_less_than_12hrs],
+                            out_of_state_more_than_12hrs: [out_of_state_more_than_12hrs]
+                        };
+                    }
+                    else {
+                        hashMap[college]['in_state_less_than_12hrs'].push(in_state_less_than_12hrs);
+                        hashMap[college]['in_state_more_than_12hrs'].push(in_state_more_than_12hrs);
+                        hashMap[college]['out_of_state_less_than_12hrs'].push(out_of_state_less_than_12hrs);
+                        hashMap[college]['out_of_state_more_than_12hrs'].push(out_of_state_more_than_12hrs);
+                    }
                 }
             }
         }
@@ -322,19 +326,23 @@ function ResponsiveBarChart() {
 
             if (date.year >= $employment_filter.getStartYear() && date.year <= $employment_filter.getEndYear())
             {
-                if (college in hashMap == false) {
-                    hashMap[college] = {
-                        in_state_less_than_6hrs: [in_state_less_than_6hrs],
-                        in_state_more_than_6hrs: [in_state_more_than_6hrs],
-                        out_of_state_less_than_6hrs: [out_of_state_less_than_6hrs],
-                        out_of_state_more_than_6hrs: [out_of_state_more_than_6hrs]
-                    };
-                }
-                else {
-                    hashMap[college]['in_state_less_than_6hrs'].push(in_state_less_than_6hrs);
-                    hashMap[college]['in_state_more_than_6hrs'].push(in_state_more_than_6hrs);
-                    hashMap[college]['out_of_state_less_than_6hrs'].push(out_of_state_less_than_6hrs);
-                    hashMap[college]['out_of_state_more_than_6hrs'].push(out_of_state_more_than_6hrs);
+                // Do not include summer tuition
+                if (date.season != 'Summer') {
+
+                    if (college in hashMap == false) {
+                        hashMap[college] = {
+                            in_state_less_than_6hrs: [in_state_less_than_6hrs],
+                            in_state_more_than_6hrs: [in_state_more_than_6hrs],
+                            out_of_state_less_than_6hrs: [out_of_state_less_than_6hrs],
+                            out_of_state_more_than_6hrs: [out_of_state_more_than_6hrs]
+                        };
+                    }
+                    else {
+                        hashMap[college]['in_state_less_than_6hrs'].push(in_state_less_than_6hrs);
+                        hashMap[college]['in_state_more_than_6hrs'].push(in_state_more_than_6hrs);
+                        hashMap[college]['out_of_state_less_than_6hrs'].push(out_of_state_less_than_6hrs);
+                        hashMap[college]['out_of_state_more_than_6hrs'].push(out_of_state_more_than_6hrs);
+                    }
                 }
             }
         }
@@ -465,16 +473,14 @@ function ResponsiveBarChart() {
     {
         var str = num.toString();
 
-        var month = null;
-        var day = null;
+        var season = str.split(' ')[[0]];
         var year = parseInt(str.substring(str.length - 4));
 
-        return new Date(month, day, year);
+        return new Date(season, year);
 
-        function Date(month, day, year)
+        function Date(season, year)
         {
-            this.month = month;
-            this.day = day;
+            this.season = season;
             this.year = year;
             this.toString = function() {
                 return 'month: ' + this.month + ', day: ' + this.day + ', year: ' + this.year;

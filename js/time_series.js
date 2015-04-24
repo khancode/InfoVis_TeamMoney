@@ -558,6 +558,8 @@ function TimeSeries() {
     this.reDraw = function() {
 
         d3.select('#time_series_container').select('svg').remove();
+        d3.select('#college_filter_legend').select('svg').remove();
+        d3.select('#time_scale_bar').select('svg').remove();
         this.draw();
     };
 
