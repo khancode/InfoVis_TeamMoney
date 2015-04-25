@@ -22,7 +22,6 @@
     <link href="css/index.css" rel="stylesheet">
     <link href="css/salary_employment_rates_section.css" rel="stylesheet">
     <link href="css/time_series.css" rel="stylesheet">
-    <link href="css/dashboard.css" rel="stylesheet">
     <link href="css/bottom_fixed_bar.css" rel="stylesheet">
 
     <link href="css/d3.stackedbar.css" rel="stylesheet">
@@ -38,7 +37,6 @@
 
     <!-- D3 Plus -->
     <!-- load D3plus after D3js -->
-    <!--<script src="http://www.d3plus.org/js/d3plus.js"></script>-->
     <script src="libs/d3plus/d3plus.js"></script>
 
     <!-- responsive_bar_chart -->
@@ -63,45 +61,7 @@
 
 </head>
 
-<body ng-app="TreeMap">
-
-<!-- The justified navigation menu is meant for single line per list item.
-     Multiple lines will require custom code not provided by Bootstrap. -->
-
-<!--<nav id="mainNav" class="navbar navbar-default navbar-fixed-top affix">-->
-    <!--<div class="container-fluid">-->
-        <!--&lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;-->
-        <!--<div class="navbar-header">-->
-            <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">-->
-                <!--<span class="sr-only">Toggle navigation</span>-->
-                <!--<span class="icon-bar"></span>-->
-                <!--<span class="icon-bar"></span>-->
-                <!--<span class="icon-bar"></span>-->
-            <!--</button>-->
-            <!--<a class="navbar-brand page-scroll" href="http://ironsummitmedia.github.io/startbootstrap-creative/#page-top">Georgia Tech Salaries</a>-->
-        <!--</div>-->
-
-        <!--&lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;-->
-        <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
-            <!--<ul class="nav navbar-nav navbar-right">-->
-                <!--<li class="">-->
-                    <!--<a class="page-scroll" href="#about">About</a>-->
-                <!--</li>-->
-                <!--<li class="">-->
-                    <!--<a class="page-scroll" href="#salary_employment_rates_section">Overview</a>-->
-                <!--</li>-->
-                <!--<li class="">-->
-                    <!--<a class="page-scroll" href="#employment_container">Employment</a>-->
-                <!--</li>-->
-                <!--<li class="">-->
-                    <!--<a class="page-scroll" href="#salary_container">Salary</a>-->
-                <!--</li>-->
-            <!--</ul>-->
-        <!--</div>-->
-        <!--&lt;!&ndash; /.navbar-collapse &ndash;&gt;-->
-    <!--</div>-->
-    <!--&lt;!&ndash; /.container-fluid &ndash;&gt;-->
-<!--</nav>-->
+<body>
 
 <nav id="footer" class="navbar navbar-default navbar-fixed-top affix">
     <div id="degree_filter">
@@ -119,7 +79,6 @@
                 </label>
             </div>
         </div>
-        <!--<div id="reset_button" class="btn btn-default btn-xl">Tuition vs. Salary!</div>-->
         <button id="reset_button" type="button" class="btn btn-primary">Reset</button>
     </div>
     <div id="college_filter">
@@ -131,33 +90,6 @@
     </div>
 
 </nav>
-
-<!--<header>-->
-    <!--<div class="header-content">-->
-        <!--<div class="header-content-inner">-->
-            <!--<h1 style="font-size: 65px;">Your Favorite Source of Free Bootstrap Themes</h1>-->
-            <!--<hr>-->
-            <!--<p>Start Bootstrap can help you build better websites using the Bootstrap CSS framework! Just download your template and start going, no strings attached!</p>-->
-            <!--<a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</header>-->
-
-<!--<section class="bg-primary" id="about">-->
-    <!--<div class="container">-->
-        <!--<div class="row">-->
-            <!--<div class="col-lg-8 col-lg-offset-2 text-center">-->
-                <!--<h2 class="section-heading">About</h2>-->
-                <!--<hr class="light">-->
-                <!--<p class="text-faded">Start Bootstrap has everything you need to get your new website up and running in no time! All of the templates and themes on Start Bootstrap are open source, free to download, and easy to use. No strings attached!</p>-->
-                <!--<a href="#salary_employment_rates_section" class="btn btn-default btn-xl page-scroll">Tuition vs. Salary!</a>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</section>-->
-
-
-<!-- -------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
 <section id="salary_employment_rates_section" class="jumbotron">
 
@@ -220,40 +152,10 @@
     </table>
 </div>
 
-<!--<div id="footer">-->
-    <!--<div id="degree_filter">-->
-        <!--<div id="degree_radio_button_container">-->
-            <!--<div class="radio">-->
-                <!--<label>-->
-                    <!--<input type="radio" name="optionsRadios" class="degree_radio_group" id="bsDegreeRadio" value="Bachelors" checked>-->
-                    <!--BS (Bachelor of Science) Degree-->
-                <!--</label>-->
-            <!--</div>-->
-            <!--<div class="radio">-->
-                <!--<label>-->
-                    <!--<input type="radio" name="optionsRadios" class="degree_radio_group" id="msDegreeRadio" value="Masters">-->
-                    <!--MS (Master of Science) Degree-->
-                <!--</label>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<div id="college_filter">-->
-        <!--<div id="college_filter_legend"></div>-->
-    <!--</div>-->
-    <!--<div id="time_scale_bar">-->
-        <!--<h4 id="time_scale_years_text">Years 2006 - 2014</h4>-->
-        <!--<h5>(Data averaged for the years above)</h5>-->
-    <!--</div>-->
-
-<!--</div>-->
-
 <!-- Site footer -->
 <footer class="footer">
     <p>© CS 4460 Team $$$</p>
 </footer>
-
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<!--<script src="./Justified Nav Template for Bootstrap_files/ie10-viewport-bug-workaround.js"></script>-->
 
 <!-- js for this file -->
 <script src="js/index.js"></script>
@@ -275,9 +177,6 @@
 <script src="libs/js/jquery.easing.min.js"></script>
 <script src="libs/js/jquery.fittext.js"></script>
 <script src="libs/js/wow.min.js"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="libs/js/creative.js"></script>
 
 
 </body></html>

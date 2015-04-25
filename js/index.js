@@ -1,66 +1,53 @@
-/**
- * Created by khancode on 3/19/2015.
+/*
+    100% of the code is original and not copied in this file
  */
 
-console.log("inside index.js");
-
+// Setting a listener for reset button to reset overall filter and reload all visualizations
 $('#reset_button').on('click', function() {
 
+    // reset overall filter
     $employment_filter.reset();
 
+    // update vizs
     $scatter_animation.reset();
     $time_series.reDraw();
     $responsive_bar_chart.update();
     $tree_map.reDraw();
     $salaries_stacked_bar_chart.reDraw();
 
+    // reset radio buttons and time scale years text
     $('#bsDegreeRadio').prop('checked', true);
     $('#inStateTuitionRadio').prop('checked', true);
     $('#time_scale_years_text').html('Years: 2011 - 2015');
 });
 
-/* Radio buttons */
+// Setting a listener for degree radio group buttons
+// Vizs should update after applying filter
 $('.degree_radio_group').on('change', function() {
 
+    // set degree level filter
     var degreeLevel = $(this).val();
-    //Omar
     $employment_filter.setDegreeLevel(degreeLevel);
 
+    // Update vizs
     $time_series.update();
     $scatter_animation.update();
     $responsive_bar_chart.update();
     $tree_map.reDraw();
-    //$overall_salary_dashboard.reDraw();
-
     $salaries_stacked_bar_chart.reDraw();
-
-    // TODO the years and filter shouldn't be reset, need to fix this update.
-    //$('#treemap_years_text').text('Years 2006 - 2014');
-    //$employment_filter.clear(degreeLevel);
 });
 
 $('.in-out-state_tuition_radio_group').on('change', function() {
 
+    // apply filter
     var inOutStateTuitionType = $(this).val();
-
-    console.log('inOutStateTuitionType: ' + inOutStateTuitionType);
-
-    //Omar
     $employment_filter.setTuitionType(inOutStateTuitionType);
 
-    //$time_series.update();
-    //$scatter_animation.update();
+    // update mirrored bar chart
     $responsive_bar_chart.update();
-    //$tree_map.reDraw();
-    ////$overall_salary_dashboard.reDraw();
-    //
-    //$salaries_stacked_bar_chart.reDraw();
-
-    // TODO the years and filter shouldn't be reset, need to fix this update.
-    //$('#treemap_years_text').text('Years 2006 - 2014');
-    //$employment_filter.clear(degreeLevel);
 });
 
+// $index is used to hold associated college colors
 $index = new CollegeColors();
 
 function CollegeColors()
@@ -99,63 +86,3 @@ function CollegeColors()
         return collegeColorScale[college];
     };
 }
-
-//var colleges;
-
-///* Omar wrote this */
-//$.getScript("js/treemap_plus.js", function(){
-//
-//    console.log("Script loaded and executed.");
-//    // here you can use anything you defined in the loaded script
-//
-//    setTimeout(function (){
-//
-//        //something you want delayed
-//        setSelector();
-//
-//    }, 1000); // how long do you want the delay to be?
-//
-//});
-//
-//function setSelector() {
-//    $(".d3plus_rect").click(function() {
-//        //alert('hai');
-//
-//        //alert($(this).text());
-//
-//        //var backgroundColor = $(this).css("background-color");
-//        //alert("bgcolor: " + backgroundColor);
-//
-//        //$(this).css('background-color', 'yellow');
-//        //$(this).
-//
-//        //alert($(this).find("tspan").text());
-//        console.log($(this).find("text").attr('id'));
-//        var id = $(this).find("text").attr('id');
-//        var split = id.split('_');
-//        //alert(split);
-//
-//        var college = '';
-//        for (var i = 2; i < split.length - 1; i++) {
-//            college += split[i];
-//
-//            if (i != split.length - 2)
-//                college += ' ';
-//        }
-//
-//        alert(college);
-//        console.log("College selected: " + college);
-//
-//        // now get background color
-//        var bgclr = $(this).find("rect").css('fill');
-//        console.log(bgclr);
-//
-//        $(this).find("rect").css('fill', 'yellow');
-//
-//
-//        data.push({name:college});
-//        rawr.$apply(function() {
-//            rawr.colleges = data;
-//        })
-//    });
-//}

@@ -1,11 +1,9 @@
 /**
- * Created by khancode on 3/19/2015.
+ * 90% of this code is original and not copied
+ * This file imports copied code from libs/d3plus/d3plus.js
  */
 
 $tree_map = new TreeMap();
-// Default tree map 2006 - 2014
-//$tree_map.draw();
-
 $tree_map.init();
 
 function TreeMap() {
@@ -17,6 +15,7 @@ function TreeMap() {
 
     var collegeSelected = null;
 
+    // Get the necessary data files and draw the tree map
     this.init = function() {
 
         getCollegesData();
@@ -52,17 +51,6 @@ function TreeMap() {
 
         var arr_data = filterData(data);
 
-        //// sample data array
-        //var sample_data = [
-        //    {"value": 50000, "name": "College of Architecture"},
-        //    {"value": 77500, "name": "College of Computing"},
-        //    {"value": 66716, "name": "College of Engineering"},
-        //    {"value": 54000, "name": "Ivan Allen College"},
-        //    {"value": 55000, "name": "Scheller College of Business"},
-        //    {"value": 43250, "name": "College of Sciences"},
-        //    {"value": 63000, "name": "Multidisciplinary"}
-        //];
-
         // instantiate d3plus
         var visualization = d3plus.viz()
             .container("#treemap_plus_container")  // container DIV to hold the visualization
@@ -75,6 +63,7 @@ function TreeMap() {
 
         setOnRectClickListener();
 
+        // Filter the tree map data according to the overall filter ($employment_filter)
         function filterData(data) {
             // hashmap: key (college) => value (Placement Rate)
             var hashMap = {};
@@ -87,7 +76,6 @@ function TreeMap() {
 
                 var date = parseDate(data[i]['Date']);
                 var degreeLevel = data[i]['Level'];
-                //var medianSalary = data[i]['Median Overall Salary'];
                 var employmentRate = data[i]['Placement Rate'];
 
                 if (date.year >= $employment_filter.getStartYear() && date.year <= $employment_filter.getEndYear())
@@ -95,9 +83,9 @@ function TreeMap() {
                     if (degreeLevel == $employment_filter.getDegreeLevel())
                     {
                         if (college in hashMap == false)
-                            hashMap[college] = [employmentRate]; //[medianSalary];
+                            hashMap[college] = [employmentRate];
                         else
-                            hashMap[college].push(employmentRate); //medianSalary);
+                            hashMap[college].push(employmentRate);
                     }
                 }
             }
@@ -115,6 +103,7 @@ function TreeMap() {
         }
     };
 
+    // Draw the majors when tree map is clicked
     this.drawMajors = function() {
 
         var data;
@@ -135,6 +124,7 @@ function TreeMap() {
             .timing({"transitions": 1500})
             .draw();             // finally, draw the visualization!
 
+        // set click listener to go back to root tree map
         setOnRectClickListener();
 
         // Replace the tree map sections with easy-to-see color range
@@ -197,7 +187,7 @@ function TreeMap() {
         }
     };
 
-    this.reDraw = function() { //level, startYear, endYear) {
+    this.reDraw = function() {
         d3.select('#treemap_plus_container').select('svg').remove();
 
         if (collegeSelected == null)
@@ -277,7 +267,7 @@ function TreeMap() {
         return avg / numArr.length;
     }
 
-    /* getters */
+    /* accessors */
     this.getCollegesData = function() { return collegesData; };
     this.getBSMajorsData = function() { return bsMajorsData; };
     this.getMSMajorsData = function() { return msMajorsData; };

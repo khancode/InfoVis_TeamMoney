@@ -1,5 +1,6 @@
 /**
- * Created by khancode on 4/22/2015.
+ * 99% of the code is original and not copied in this file
+ * Helper imported js files (copied code) is in libs/js/responsive_bar_chart
  */
 
 $responsive_bar_chart = new ResponsiveBarChart();
@@ -69,8 +70,6 @@ function ResponsiveBarChart() {
             for (var college in data)
             {
                 var collegeObj = data[college];
-                //console.log('collegeObj->');
-                //console.log(collegeObj);
 
                 var collegeInitials = $employment_filter.getCollegeInitials(college);
                 if (categories[i] == 'Tuition') {
@@ -104,57 +103,132 @@ function ResponsiveBarChart() {
             newData.push(category);
         }
 
-        console.log('newData: ');
-        console.log(newData);
-
         stackedbar.dataset = newData;
         stackedbar.update();
 
-        //var newData = new Array();
-        //var year = 2007;//getRandomInt(2005, 2014);
-        //var numCategories = 2;//getRandomInt(1, 10);
-        // for (var i=0; i<numCategories; i++) {
-        // 	var category = {};
-        // 	category.key = "category "+i;
-        // 	category.values = new Array();
-        // 	for (var j=year; j<=2015; j++) {
-        // 		category.values.push({ x: j, y: getRandomInt(-50, 50) });
-        // 	// 	category.values.push({ x: j, y: -45 });
-
-        // 	};
-        // 	// category.values.push({x:j, y:-45});
-        // 	// category.values.push({x:2007, y:80});
-
-
-        // 	newData.push(category);
-        // }
-
-        ///* OMAR CODE */
-        //var category = {key: 'Tuition', values: new Array()};
-        //category.values.push({x: 'CoC', y: -15000})
-        //category.values.push({x: 'CoA', y: -15000})
-        //newData.push(category);
-        //
-        //var category = {key: 'Salary', values: new Array()};
-        //category.values.push({x: 'CoC', y: 65000})
-        //category.values.push({x: 'CoA', y: 45000})
-        //newData.push(category);
-        //
-        //var category = {key: 'Bonus', values: new Array()};
-        //category.values.push({x: 'CoC', y: 5000})
-        //category.values.push({x: 'CoA', y: 3500})
-        //newData.push(category);
-        ///* OMAR CODE */
-
-        //stackedbar.dataset = newData;
-        //stackedbar.update();
-//});
     };
 
-    function getRandomInt(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
+    function filterBSData() {
 
+        var data;
+        if ($employment_filter.getDegreeLevel() == 'Bachelors')
+            data = bsTuitionRates;
+        else if ($employment_filter.getDegreeLevel() == 'Masters')
+            data = msTuitionRates;
+
+        // hashmap: key (college) => value (Placement Rate)
+        var hashMap = {};
+
+        for (var i in data)
+        {
+            var college = data[i]['college'];
+            if ($employment_filter.isExcluded(college))
+                continue;
+
+            var date = parseTuitionDate(data[i]['date']);
+            var in_state_less_than_6hrs = parseInt(data[i]['in-state-less-than-6hrs']);
+            var in_state_more_than_6hrs = parseInt(data[i]['in-state-more-than-6hrs']);
+            var out_of_state_less_than_6hrs = parseInt(data[i]['out-of-state-less-than-6hrs']);
+            var out_of_state_more_than_6hrs = parseInt(data[i]['out-of-state-more-than-6hrs']);
+
+            if (date.year >= $employment_filter.getStartYear() && date.year <= $employment_filter.getEndYear())
+            {
+                // Do not include summer tuition
+                if (date.season != 'Summer') {
+
+                    if (college in hashMap == false) {
+                        hashMap[college] = {
+                            in_state_less_than_6hrs: [in_state_less_than_6hrs],
+                            in_state_more_than_6hrs: [in_state_more_than_6hrs],
+                            out_of_state_less_than_6hrs: [out_of_state_less_than_6hrs],
+                            out_of_state_more_than_6hrs: [out_of_state_more_than_6hrs]
+                        };
+                    }
+                    else {
+                        hashMap[college]['in_state_less_than_6hrs'].push(in_state_less_than_6hrs);
+                        hashMap[college]['in_state_more_than_6hrs'].push(in_state_more_than_6hrs);
+                        hashMap[college]['out_of_state_less_than_6hrs'].push(out_of_state_less_than_6hrs);
+                        hashMap[college]['out_of_state_more_than_6hrs'].push(out_of_state_more_than_6hrs);
+                    }
+                }
+            }
+        }
+
+        // Average it now
+        for (var college in hashMap)
+        {
+            hashMap[college]['in_state_less_than_6hrs'] = sum(hashMap[college]['in_state_less_than_6hrs']);
+            hashMap[college]['in_state_more_than_6hrs'] = sum(hashMap[college]['in_state_more_than_6hrs']);
+            hashMap[college]['out_of_state_less_than_6hrs'] = sum(hashMap[college]['out_of_state_less_than_6hrs']);
+            hashMap[college]['out_of_state_more_than_6hrs'] = sum(hashMap[college]['out_of_state_more_than_6hrs']);
+        }
+
+        /** Now get salary **/
+        data = collegesData;
+
+        var salaryHashMap = {};
+
+        for (var i in data)
+        {
+            var college = data[i]['College'];
+            if ($employment_filter.isExcluded(college))
+                continue;
+
+            var date = parseDate(data[i]['Date']);
+            var degreeLevel = data[i]['Level'];
+            var medianSalary = data[i]['Median Overall Salary'];
+            var medianBonus = data[i]['Median Overall Bonus'];
+
+
+            if (date.year >= $employment_filter.getStartYear() && date.year <= $employment_filter.getEndYear())
+            {
+                if (degreeLevel == $employment_filter.getDegreeLevel())
+                {
+                    if (college in salaryHashMap == false) {
+                        salaryHashMap[college] = {
+                            'Median Overall Salary': [medianSalary],
+                            'Median Overall Bonus': [medianBonus]
+                        };
+                    }
+                    else {
+                        salaryHashMap[college]['Median Overall Salary'].push(medianSalary);
+                        salaryHashMap[college]['Median Overall Bonus'].push(medianBonus);
+                    }
+                }
+            }
+        }
+
+        // Average salary/bonus now
+        for (var college in salaryHashMap)
+        {
+            salaryHashMap[college]['Median Overall Salary'] = average(salaryHashMap[college]['Median Overall Salary']);
+            salaryHashMap[college]['Median Overall Bonus'] = average(salaryHashMap[college]['Median Overall Bonus']);
+        }
+
+        var arr_data = {};
+        for (var college in hashMap)
+        {
+            arr_data[college] = {
+                "in-state-less-than-6hrs": hashMap[college]['in_state_less_than_6hrs'],
+                "in-state-more-than-6hrs": hashMap[college]['in_state_more_than_6hrs'],
+                "out-of-state-less-than-6hrs": hashMap[college]['out_of_state_less_than_6hrs'],
+                "out-of-state-more-than-6hrs": hashMap[college]['out_of_state_more_than_6hrs'],
+                "Median Overall Salary": null,
+                "Median Overall Bonus": null
+            }
+        }
+
+        // Now put salary & bonus into arr_data
+        for (var college in arr_data)
+        {
+            if (college in salaryHashMap) {
+                arr_data[college]['Median Overall Salary'] = salaryHashMap[college]['Median Overall Salary'];
+                arr_data[college]['Median Overall Bonus'] = salaryHashMap[college]['Median Overall Bonus'];
+            }
+        }
+
+        return arr_data;
+    }
 
     function filterMSData() {
         console.log('sup bro');
@@ -214,13 +288,8 @@ function ResponsiveBarChart() {
             hashMap[college]['out_of_state_more_than_12hrs'] = sum(hashMap[college]['out_of_state_more_than_12hrs']);
         }
 
-        //console.log('averaged buddy');
-        //console.log(hashMap);
-
         /** Now get salary **/
         data = collegesData;
-        //console.log('collegesData');
-        //console.log(collegesData);
 
         var salaryHashMap = {};
 
@@ -254,9 +323,6 @@ function ResponsiveBarChart() {
             }
         }
 
-        //console.log('salaryHashMap');
-        //console.log(salaryHashMap);
-
         // Average salary/bonus now
         for (var college in salaryHashMap)
         {
@@ -264,10 +330,6 @@ function ResponsiveBarChart() {
             salaryHashMap[college]['Median Overall Bonus'] = average(salaryHashMap[college]['Median Overall Bonus']);
         }
 
-        //console.log('salaryHashMap averaged');
-        //console.log(salaryHashMap);
-
-        //var arr_data = [];
         var arr_data = {};
         for (var college in hashMap)
         {
@@ -289,161 +351,6 @@ function ResponsiveBarChart() {
                 arr_data[college]['Median Overall Bonus'] = salaryHashMap[college]['Median Overall Bonus'];
             }
         }
-
-        console.log('arr_data: ');
-        console.log(arr_data);
-
-        return arr_data;
-    }
-
-    function filterBSData() {
-        console.log('sup bro');
-
-        var data;
-        if ($employment_filter.getDegreeLevel() == 'Bachelors')
-            data = bsTuitionRates;
-        else if ($employment_filter.getDegreeLevel() == 'Masters')
-            data = msTuitionRates;
-
-        console.log(data);
-
-        // hashmap: key (college) => value (Placement Rate)
-        var hashMap = {};
-
-        for (var i in data)
-        {
-            var college = data[i]['college'];
-            if ($employment_filter.isExcluded(college))
-                continue;
-
-            //console.log('date');
-            //console.log(data[i]['date']);
-            var date = parseTuitionDate(data[i]['date']);
-            var in_state_less_than_6hrs = parseInt(data[i]['in-state-less-than-6hrs']);
-            var in_state_more_than_6hrs = parseInt(data[i]['in-state-more-than-6hrs']);
-            var out_of_state_less_than_6hrs = parseInt(data[i]['out-of-state-less-than-6hrs']);
-            var out_of_state_more_than_6hrs = parseInt(data[i]['out-of-state-more-than-6hrs']);
-
-            if (date.year >= $employment_filter.getStartYear() && date.year <= $employment_filter.getEndYear())
-            {
-                // Do not include summer tuition
-                if (date.season != 'Summer') {
-
-                    if (college in hashMap == false) {
-                        hashMap[college] = {
-                            in_state_less_than_6hrs: [in_state_less_than_6hrs],
-                            in_state_more_than_6hrs: [in_state_more_than_6hrs],
-                            out_of_state_less_than_6hrs: [out_of_state_less_than_6hrs],
-                            out_of_state_more_than_6hrs: [out_of_state_more_than_6hrs]
-                        };
-                    }
-                    else {
-                        hashMap[college]['in_state_less_than_6hrs'].push(in_state_less_than_6hrs);
-                        hashMap[college]['in_state_more_than_6hrs'].push(in_state_more_than_6hrs);
-                        hashMap[college]['out_of_state_less_than_6hrs'].push(out_of_state_less_than_6hrs);
-                        hashMap[college]['out_of_state_more_than_6hrs'].push(out_of_state_more_than_6hrs);
-                    }
-                }
-            }
-        }
-
-        // Average it now
-        for (var college in hashMap)
-        {
-            hashMap[college]['in_state_less_than_6hrs'] = sum(hashMap[college]['in_state_less_than_6hrs']);
-            hashMap[college]['in_state_more_than_6hrs'] = sum(hashMap[college]['in_state_more_than_6hrs']);
-            hashMap[college]['out_of_state_less_than_6hrs'] = sum(hashMap[college]['out_of_state_less_than_6hrs']);
-            hashMap[college]['out_of_state_more_than_6hrs'] = sum(hashMap[college]['out_of_state_more_than_6hrs']);
-        }
-
-        //console.log('averaged buddy');
-        //console.log(hashMap);
-
-        /** Now get salary **/
-        data = collegesData;
-        //console.log('collegesData');
-        //console.log(collegesData);
-
-        var salaryHashMap = {};
-
-        for (var i in data)
-        {
-            var college = data[i]['College'];
-            if ($employment_filter.isExcluded(college))
-                continue;
-
-            var date = parseDate(data[i]['Date']);
-            var degreeLevel = data[i]['Level'];
-            var medianSalary = data[i]['Median Overall Salary'];
-            var medianBonus = data[i]['Median Overall Bonus'];
-
-
-            if (date.year >= $employment_filter.getStartYear() && date.year <= $employment_filter.getEndYear())
-            {
-                if (degreeLevel == $employment_filter.getDegreeLevel())
-                {
-                    if (college in salaryHashMap == false) {
-                        salaryHashMap[college] = {
-                            'Median Overall Salary': [medianSalary],
-                            'Median Overall Bonus': [medianBonus]
-                        };
-                    }
-                    else {
-                        salaryHashMap[college]['Median Overall Salary'].push(medianSalary);
-                        salaryHashMap[college]['Median Overall Bonus'].push(medianBonus);
-                    }
-                }
-            }
-        }
-
-        //console.log('salaryHashMap');
-        //console.log(salaryHashMap);
-
-        // Average salary/bonus now
-        for (var college in salaryHashMap)
-        {
-            salaryHashMap[college]['Median Overall Salary'] = average(salaryHashMap[college]['Median Overall Salary']);
-            salaryHashMap[college]['Median Overall Bonus'] = average(salaryHashMap[college]['Median Overall Bonus']);
-        }
-
-        //console.log('salaryHashMap averaged');
-        //console.log(salaryHashMap);
-
-        //var arr_data = [];
-        var arr_data = {};
-        for (var college in hashMap)
-        {
-            //arr_data.push(
-            //    {
-            //        "college":college,
-            //        "in-state-less-than-6hrs": hashMap[college]['in_state_less_than_6hrs'],
-            //        "in-state-more-than-6hrs": hashMap[college]['in_state_more_than_6hrs'],
-            //        "out-of-state-less-than-6hrs": hashMap[college]['out_of_state_less_than_6hrs'],
-            //        "out-of-state-more-than-6hrs": hashMap[college]['out_of_state_more_than_6hrs']
-            //    }
-            //);
-
-            arr_data[college] = {
-                "in-state-less-than-6hrs": hashMap[college]['in_state_less_than_6hrs'],
-                "in-state-more-than-6hrs": hashMap[college]['in_state_more_than_6hrs'],
-                "out-of-state-less-than-6hrs": hashMap[college]['out_of_state_less_than_6hrs'],
-                "out-of-state-more-than-6hrs": hashMap[college]['out_of_state_more_than_6hrs'],
-                "Median Overall Salary": null,
-                "Median Overall Bonus": null
-            }
-        }
-
-        // Now put salary & bonus into arr_data
-        for (var college in arr_data)
-        {
-            if (college in salaryHashMap) {
-                arr_data[college]['Median Overall Salary'] = salaryHashMap[college]['Median Overall Salary'];
-                arr_data[college]['Median Overall Bonus'] = salaryHashMap[college]['Median Overall Bonus'];
-            }
-        }
-
-        console.log('arr_data: ');
-        console.log(arr_data);
 
         return arr_data;
     }

@@ -1,16 +1,15 @@
 /**
- * Created by khancode on 4/7/2015.
+ * 40% of code is original and not copied in this file
  */
 
 $time_series = new TimeSeries();
-
 $time_series.draw();
 
 
 function TimeSeries() {
 
-    // 40 Custom DDV colors
-    var color = d3.scale.ordinal().range(["#B22200", "#EACE3F", "#282F6B", "#B35C1E", "#224F20", "#5F487C", "#7FC9BD", "#7FC7C6", "#7EC4CF", "#7FBBCF", "#7FB1CF", "#80A8CE", "#809ECE", "#8897CE", "#8F90CD", "#9788CD", "#9E81CC", "#AA81C5", "#B681BE", "#C280B7", "#CE80B0", "#D3779F", "#D76D8F", "#DC647E", "#E05A6D", "#E16167", "#E26962", "#E2705C", "#E37756", "#E38457", "#E39158", "#E29D58", "#E2AA59", "#E0B15B", "#DFB95C", "#DDC05E", "#DBC75F", "#E3CF6D", "#EAD67C", "#F2DE8A"]);
+    // College colors
+    var color = d3.scale.ordinal().range(["#B22200", "#EACE3F", "#282F6B", "#B35C1E", "#224F20", "#5F487C"]);
 
     var xScale;
     var xScale2;
@@ -476,18 +475,9 @@ function TimeSeries() {
                 console.log(brush.extent());
                 var startDate = new Date(Date.parse(brush.extent()[0]));
                 var startYear = startDate.getFullYear();
-                //console.log("Start Date: " + startDate.getFullYear());
 
                 var endDate = new Date(Date.parse(brush.extent()[1]));
                 var endYear = endDate.getFullYear();
-                //console.log(endDate);
-                //console.log(typeof endDate);
-                //console.log("End Date: " + endDate.getFullYear());
-
-                //alert('Start Year: ' + startYear + '\nEnd Year: ' + endYear);
-
-                //console.log('startMonth: ' + startDate.getMonth());
-                //console.log('endMonth: ' + endDate.getMonth());
 
                 if (startDate.getMonth() >= 6)
                     startYear += 1;
@@ -495,20 +485,11 @@ function TimeSeries() {
                 if (endDate.getMonth() >= 6)
                     endYear += 1;
 
-                console.log('startYear: ' + startYear);
-                console.log('endYear: ' + endYear);
-
-                // Omar
                 $employment_filter.setStartEndYear(startYear, endYear);
                 $tree_map.reDraw();
-                //$overall_salary_dashboard.reDraw();
-
-                // New Content
-                //$salary_employment_scatterplot.reDraw();
-                //$salary_employment_scatterplot.update();
 
                 $scatter_animation.update(false);
-                //$stacked_bar_chart.update();
+
                 $responsive_bar_chart.update();
 
                 $salaries_stacked_bar_chart.reDraw();

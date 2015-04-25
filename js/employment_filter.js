@@ -1,5 +1,7 @@
-/**
- * Created by khancode on 4/11/2015.
+
+/*
+    100% code is original and not copied in this file
+    This js file is used for filtering all 5 visualizations
  */
 
 $employment_filter = new EmploymentFilter();
@@ -55,22 +57,12 @@ function EmploymentFilter()
         else
             collegesExcluded[college] = true;
 
-        //console.log('college to be excluded: ' + college);
-        //console.log(collegesExcluded);
     };
 
+    // check if college is excluded from filter
     this.isExcluded = function(college) {
 
         return college in collegesExcluded;
-    };
-
-    this.clear = function(degreeLevelInput) {
-        // TODO for temporary use, look at index.js for problem description
-        degreeLevel = degreeLevelInput;
-        startYear = 2006;
-        endYear = 2014;
-        for (var college in collegesExcluded)
-            delete collegesExcluded[college];
     };
 
     this.setDegreeLevel = function(degreeLevelInput) {
@@ -110,9 +102,8 @@ function EmploymentFilter()
         return collegeInitials[college];
     };
 
+    // reset filter to default values
     this.reset = function() {
-
-        // private members
         degreeLevel = 'Bachelors'; // default
         startYear = 2011; // default
         endYear = 2015; // default
@@ -120,6 +111,7 @@ function EmploymentFilter()
         collegesExcluded = {}; // treated as a hashset with value ignored: key (college) => value (true)
     };
 
+    // accessors
     this.getDegreeLevel = function() { return degreeLevel; };
     this.getStartYear = function() { return startYear; };
     this.getEndYear = function() { return endYear; };

@@ -1,7 +1,10 @@
+/**
+ * 85% of code is original and not copied in this file
+ */
+
 $salaries_stacked_bar_chart = new SalariesStackedBarChart();
 
 $salaries_stacked_bar_chart.draw();
-// Default tree map 2006 - 2014
 function SalariesStackedBarChart()
 {
 	this.draw = function() {
